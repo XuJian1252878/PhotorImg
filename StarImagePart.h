@@ -35,7 +35,7 @@ public:
 
     void setImage(Mat_<Vec3b> imageMat);
 
-    void addImagePixelValue(Mat& resultImg, Mat& targetImage,
+    void addImagePixelValue(Mat& resultImg,
                             Mat& queryImgTransform, Mat& skyMaskImg, int imageCount);
 
     void addUpStarImagePart(Mat_<Vec3b> imageMat);

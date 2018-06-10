@@ -15,8 +15,10 @@ bool compare(Vec3b a, Vec3b b);
 int main( int argc, char** argv )
 {
 //    string sourceImgPath1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/b1-1Y8A4155.jpg";
-    string targetImgPath = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/a2-1Y8A0108.jpg";
-    string sourceImgPath2 =  "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/a1-1Y8A0106.jpg";
+    // target 对齐基准图片
+    string targetImgPath = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/a1-1Y8A0106.jpg";
+    // source 对齐源图片
+    string sourceImgPath2 =  "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/a2-1Y8A0108.jpg";
 
     Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
     std::vector<Mat_<Vec3b>> sourceImages;

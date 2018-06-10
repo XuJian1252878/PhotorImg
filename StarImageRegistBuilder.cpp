@@ -64,30 +64,61 @@ void StarImageRegistBuilder::setTargetImagePath(string imgPath) {
  */
 Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 
+    // 最终配准的图像信息
+    StarImage resultStarImage = StarImage(Mat::zeros(this->targetStarImage.getImage().rows,
+                                                     this->targetStarImage.getImage().cols,
+                                                     this->targetStarImage.getImage().type()),
+                                          this->rowParts, this->columnParts);
+
     // 开始对图像的每一个部分进行对齐操作，分别与targetStarImage 做对比
     for (int index = 0; index < this->sourceStarImages.size(); index ++) {
 
         StarImage tmpStarImage = this->sourceStarImages[index];  // 直接赋值，不是指针操作，
+
         // 对于每一小块图像都做配准操作
         for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
             for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex ++) {
 
-
+                Mat homo;
+                bool existHomo = false;
 //                cout << "registration: " << std::to_string(rPartIndex) + " " + std::to_string(cPartIndex) << endl;
                 Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
-                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), index);
+                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
 
 //                tmpStarImage.setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
                 this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
 
+
+                Mat_<Vec3b> queryImgTransform = this->sourceImages[index];
+                if (existHomo) {
+                    queryImgTransform = getTransformImgByHomo(queryImgTransform, homo);
+
+                    string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                    imwrite(sfile, queryImgTransform);
+                }
+
+                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
+                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                imwrite(sfile, sourceImg);
+                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(sourceImg, queryImgTransform, this->skyMaskMat, this->imageCount);
+
+                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
+                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                imwrite(sfile1, sourceImg1);
             }
         }
     }
 
-    Mat_<Vec3b> resultImage = this->mergeImage(this->MERGE_MODE_MEAN);
+    // 对于配准图像和待配准图像做平均值操作（先买上目标图像的那一部分，这一段代码不能放在source整合的前面，不然图片会出现缝隙，原因待查）
+    for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
+        for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex++) {
+            Mat_<Vec3b> targetImg = this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
+            resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(targetImg, this->targetImage, this->skyMaskMat, this->imageCount);
+        }
+    }
 
     // 对配准好的图像进行整合
-    return resultImage;
+    return resultStarImage.mergeStarImageParts();
 }
 
 /**
@@ -96,7 +127,7 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
  * @param targetImagePart
  * @return
  */
-Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarImagePart targetImagePart, int oriImgIndex) {
+Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarImagePart targetImagePart, Mat& oriImgHomo, bool& existHomo) {
     Mat sourceImg = sourceImagePart.getImage(); // query image
     Mat targetImg = targetImagePart.getImage(); // train image
 
@@ -264,6 +295,7 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
      * 那么会导致算不出变换矩阵，变换矩阵为 [] 。导致错误。
      */
     if (homo.rows < 3 || homo.cols < 3) {
+        existHomo = false;
         if (imagePoints1.size() > imagePoints2.size()) {
             return sourceImg; // 因为是星空图片，移动不会很大，在目标图片部分的特征点几乎没有的情况下，那么直接返回待配准图像进行填充细节。
         } else {
@@ -272,6 +304,8 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
     }
 
+    oriImgHomo = homo;
+    existHomo = true;
     //图像配准
     Mat sourceImgTransform;
     warpPerspective(sourceImg, sourceImgTransform ,homo , Size(targetImg.cols, targetImg.rows));
@@ -287,71 +321,5 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
 
     return sourceImgTransform;
-}
-
-
-/**
- * 对经过射影变换的 每一部分的图形矩阵进行 射影变换操作
- * @return
- */
-Mat StarImageRegistBuilder::mergeImage(int mergeMode) {
-    if (this->imageCount <= 2) {
-        mergeMode = this->MERGE_MODE_MEAN;
-    }
-
-    // 最终配准的图像信息
-    StarImage resultStarImage = StarImage(Mat::zeros(this->targetStarImage.getImage().rows,
-                                                     this->targetStarImage.getImage().cols,
-                                                     this->targetStarImage.getImage().type()),
-                                          this->rowParts, this->columnParts);
-    switch(mergeMode) {
-        case MERGE_MODE_MEAN:
-
-            for (int index = 0; index < this->sourceStarImages.size(); index ++) {
-//                Mat_<Vec3b> queryImgTransform = superimposedImg(this->sourceImages[index], this->targetImage);
-                Mat_<Vec3b> queryImgTransform = this->sourceImages[index];
-                // 对于配准图像和待配准图像做平均值操作
-                for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
-                    for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex ++) {
-
-
-                        Mat_<Vec3b> resultImg = resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                        Mat_<Vec3b> targetImg = this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-
-                            Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
-
-    //                        Mat_<Vec3b> tmpImgMat;
-    //                        addWeighted(sourceImg, 1.0 / this->imageCount, resultImg, 0, 0, tmpImgMat);
-    //                        resultStarImage.addUpStarImagePart(rPartIndex, cPartIndex, tmpImgMat);
-
-                            resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(sourceImg, targetImg, queryImgTransform, this->skyMaskMat, this->imageCount);
-
-
-
-    //                    Mat_<Vec3b> tmpImgMat;
-    //                    Mat_<Vec3b> sourceImg =  this->sourceStarImages[0].getStarImagePart(rPartIndex, cPartIndex).getImage();
-    //                    addWeighted(this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage(), 0.5,
-    //                                sourceImg, 0.5, 0, tmpImgMat);
-    //                    resultStarImage.addUpStarImagePart(rPartIndex, cPartIndex, tmpImgMat);
-
-//                        resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(targetImg, targetImg, this->skyMaskMat, this->targetImage, this->imageCount);
-
-                    }
-                }
-            }
-
-            // 对于配准图像和待配准图像做平均值操作
-            for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
-                for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex++) {
-                    Mat_<Vec3b> targetImg = this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                    resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(targetImg, targetImg, this->targetImage, this->skyMaskMat, this->imageCount);
-                }
-            }
-            return resultStarImage.mergeStarImageParts();
-        case MERGE_MODE_MEDIAN:
-            break;
-        default:
-            break;
-    }
 }
 

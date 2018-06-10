@@ -52,7 +52,7 @@ public:
 
 private:
 
-    Mat getImgTransform(StarImagePart sourceImagePart, StarImagePart targetImagePart, int oriImgIndex);
+    Mat getImgTransform(StarImagePart sourceImagePart, StarImagePart targetImagePart, Mat& OriImgHomo, bool& existHomo);
 
     Mat mergeImage(int mergeMode);
 };
