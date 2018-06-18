@@ -10,130 +10,10 @@ using namespace std;
 
 
 //bool compare(Vec3b a, Vec3b b);
-//
-//Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
-//
-//    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
-//    Mat skyMaskMat = ~groundMaskImgMat;
-//
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0101.jpg", skyMaskMat);
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0102.jpg", groundMaskImgMat);
-//
-//    // 目标矩阵的操作
-//    Mat_<Vec3b> skyImgMat;
-//    targetImage.copyTo(skyImgMat, skyMaskMat);
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0103.jpg", skyImgMat);
-//
-//    Mat_<Vec3b> groundImgMat;
-//    targetImage.copyTo(groundImgMat, groundMaskImgMat);
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0104.jpg", groundImgMat);
-//
-//    // 源矩阵的操作
-//    std::vector<Mat_<Vec3b>> skyImgs;
-//    for (int i = 0; i < sourceImages.size(); i ++) {
-//        Mat mat = sourceImages[i];
-//        Mat skyPartMat;
-//        mat.copyTo(skyPartMat, skyMaskMat);
-//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0105.jpg", skyPartMat);
-//        skyImgs.push_back(skyPartMat);
-//    }
-//
-//    std::vector<Mat_<Vec3b>> groundImgs;
-//    for (int i = 0; i < sourceImages.size(); i ++) {
-//        Mat mat = sourceImages[i];
-//        Mat groundPartMat;
-//        mat.copyTo(groundPartMat, groundMaskImgMat);
-//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0106.jpg", groundPartMat);
-//        groundImgs.push_back(groundPartMat);
-//    }
-//
-//    int rowParts = 5;
-//    int columnParts = 5;
-//
-//    StarImageRegistBuilder starImageRegistBuilder = StarImageRegistBuilder(skyImgMat, skyImgs, skyMaskMat, rowParts, columnParts);
-//    Mat_<Vec3b> resultImage = starImageRegistBuilder.registration(StarImageRegistBuilder::MERGE_MODE_MEAN);
-//
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0107.jpg", resultImage);
-//
-//    Mat skyRes;
-//    resultImage.copyTo(skyRes, skyMaskMat);
-//
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0108.jpg", skyRes);
-//
-//    Mat groundRes;
-//    addWeighted(groundImgMat, 0.5, groundImgs[0], 0.5, 0, groundRes);
-//
-//    Mat finalRes = skyRes | groundRes;
-//
-////    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", finalRes);
-//
-//    return finalRes;
-//}
-//
-///** @function main */
-//int main( int argc, char** argv )
-//{
-//
-//    vector<string> files;
-//    string folder = "/Users/xujian/Downloads/11";
-//    getFiles(folder, files);
-//
-//    if (files.size() <= 0) {
-//        return -1;
-//    }
-//
-//    int targetIndex = (int)(files.size() / 2);
-//    string targetImgPath = files[files.size() / 2];
-//    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
-//
-//    for (int index = 0; index < targetIndex; index ++) {
-//        string sourceImgPath = files[index];
-//        std::vector<Mat_<Vec3b>> sourceImages;
-//        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
-//
-//        for (int j = index; j < targetIndex; j ++) {
-//            sourceImages[0] = process(sourceImages, targetImage);
-//        }
-//        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
-//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
-//    }
-//
-//    for (int index = (int)files.size() - 1; index > targetIndex; index --) {
-//        string sourceImgPath = files[index];
-//        std::vector<Mat_<Vec3b>> sourceImages;
-//        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
-//
-//        for (int j = index; j < targetIndex; j ++) {
-//            sourceImages[0] = process(sourceImages, targetImage);
-//        }
-//        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
-//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
-//    }
-//
-//}
 
-
-/** @function main */
-int main( int argc, char** argv )
-{
-
-    vector<string> files;
-    string folder = "/Users/xujian/Downloads/11";
-    getFiles(folder, files);
-
-//    string sourceImgPath1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/b1-1Y8A4155.jpg";
-    string targetImgPath = "/Users/xujian/Downloads/1Y1.JPG";
-    string sourceImgPath2 =  "/Users/xujian/Downloads/1Y6.JPG";
-
-    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
-    std::vector<Mat_<Vec3b>> sourceImages;
-//    sourceImages.push_back(imread(sourceImgPath1, IMREAD_UNCHANGED));
-    sourceImages.push_back(imread(sourceImgPath2, IMREAD_UNCHANGED));
+Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 
     Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
-//    Mat groundMaskImgMat ;
-//    groundMaskImgMat.create(groundMaskImgMat_.size(), CV_8UC1);
-//    groundMaskImgMat = groundMaskImgMat_ & 1;
     Mat skyMaskMat = ~groundMaskImgMat;
 
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0101.jpg", skyMaskMat);
@@ -182,15 +62,141 @@ int main( int argc, char** argv )
 
     Mat groundRes;
     addWeighted(groundImgMat, 0.5, groundImgs[0], 0.5, 0, groundRes);
-//    Mat groundRes_ = superimposedImg(groundImgs, groundImgMat);
-//    Mat groundRes;
-//    groundRes_.copyTo(groundRes, groundMaskImgMat);
 
     Mat finalRes = skyRes | groundRes;
 
-    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", finalRes);
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", finalRes);
+
+    return finalRes;
+}
+
+/** @function main */
+int main( int argc, char** argv )
+{
+
+    vector<string> files;
+    string folder = "/Users/xujian/Downloads/11";
+    getFiles(folder, files);
+
+    if (files.size() <= 0) {
+        return -1;
+    }
+
+    int targetIndex = (int)(files.size() / 2);
+    string targetImgPath = files[files.size() / 2];
+    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
+
+    for (int index = 0; index < targetIndex; index ++) {
+        string sourceImgPath = files[index];
+        std::vector<Mat_<Vec3b>> sourceImages;
+        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
+
+//        for (int j = index; j < targetIndex; j ++) {
+//            sourceImages[0] = process(sourceImages, targetImage);
+//        }
+
+        sourceImages[0] = process(sourceImages, targetImage);
+
+        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
+    }
+
+    for (int index = (int)files.size() - 1; index > targetIndex; index --) {
+        string sourceImgPath = files[index];
+        std::vector<Mat_<Vec3b>> sourceImages;
+        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
+
+//        for (int j = index; j < targetIndex; j ++) {
+//            sourceImages[0] = process(sourceImages, targetImage);
+//        }
+
+        sourceImages[0] = process(sourceImages, targetImage);
+
+        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
+    }
 
 }
+
+
+///** @function main */
+//int main( int argc, char** argv )
+//{
+//
+//    vector<string> files;
+//    string folder = "/Users/xujian/Downloads/11";
+//    getFiles(folder, files);
+//
+////    string sourceImgPath1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/b1-1Y8A4155.jpg";
+//    string targetImgPath = "/Users/xujian/Downloads/1Y1.JPG";
+//    string sourceImgPath2 =  "/Users/xujian/Downloads/1Y6.JPG";
+//
+//    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
+//    std::vector<Mat_<Vec3b>> sourceImages;
+////    sourceImages.push_back(imread(sourceImgPath1, IMREAD_UNCHANGED));
+//    sourceImages.push_back(imread(sourceImgPath2, IMREAD_UNCHANGED));
+//
+//    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
+////    Mat groundMaskImgMat ;
+////    groundMaskImgMat.create(groundMaskImgMat_.size(), CV_8UC1);
+////    groundMaskImgMat = groundMaskImgMat_ & 1;
+//    Mat skyMaskMat = ~groundMaskImgMat;
+//
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0101.jpg", skyMaskMat);
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0102.jpg", groundMaskImgMat);
+//
+//    // 目标矩阵的操作
+//    Mat_<Vec3b> skyImgMat;
+//    targetImage.copyTo(skyImgMat, skyMaskMat);
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0103.jpg", skyImgMat);
+//
+//    Mat_<Vec3b> groundImgMat;
+//    targetImage.copyTo(groundImgMat, groundMaskImgMat);
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0104.jpg", groundImgMat);
+//
+//    // 源矩阵的操作
+//    std::vector<Mat_<Vec3b>> skyImgs;
+//    for (int i = 0; i < sourceImages.size(); i ++) {
+//        Mat mat = sourceImages[i];
+//        Mat skyPartMat;
+//        mat.copyTo(skyPartMat, skyMaskMat);
+//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0105.jpg", skyPartMat);
+//        skyImgs.push_back(skyPartMat);
+//    }
+//
+//    std::vector<Mat_<Vec3b>> groundImgs;
+//    for (int i = 0; i < sourceImages.size(); i ++) {
+//        Mat mat = sourceImages[i];
+//        Mat groundPartMat;
+//        mat.copyTo(groundPartMat, groundMaskImgMat);
+//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0106.jpg", groundPartMat);
+//        groundImgs.push_back(groundPartMat);
+//    }
+//
+//    int rowParts = 5;
+//    int columnParts = 5;
+//
+//    StarImageRegistBuilder starImageRegistBuilder = StarImageRegistBuilder(skyImgMat, skyImgs, skyMaskMat, rowParts, columnParts);
+//    Mat_<Vec3b> resultImage = starImageRegistBuilder.registration(StarImageRegistBuilder::MERGE_MODE_MEAN);
+//
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0107.jpg", resultImage);
+//
+//    Mat skyRes;
+//    resultImage.copyTo(skyRes, skyMaskMat);
+//
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0108.jpg", skyRes);
+//
+//    Mat groundRes;
+//    addWeighted(groundImgMat, 0.5, groundImgs[0], 0.5, 0, groundRes);
+////    Mat groundRes_ = superimposedImg(groundImgs, groundImgMat);
+////    Mat groundRes;
+////    groundRes_.copyTo(groundRes, groundMaskImgMat);
+//
+//    Mat finalRes = skyRes | groundRes;
+//
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", finalRes);
+//
+//}
 
 //bool compare(Vec3b a, Vec3b b) {
 //    for (int i = 0; i < 3; i++) {

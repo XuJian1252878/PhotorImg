@@ -198,8 +198,8 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
     // 4. 根据特征点匹配对，分离出两幅图像中已经被匹配的特征点
     std::vector<DMatch> matches;
-    double matchThreshold = minMatchDist + (maxMatchDist - minMatchDist) * 0.2;  // 阈值越大，留下的特征点越多（这个阈值是一个做文章的地方）
-    double slopeThreshold = 0.4;
+    double matchThreshold = minMatchDist + (maxMatchDist - minMatchDist) * 0.1;  // 阈值越大，留下的特征点越多（这个阈值是一个做文章的地方）
+    double slopeThreshold = 0.3;
     for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
 
         DMatch match = iter->second;
