@@ -83,11 +83,10 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 
 //                cout << "registration: " << std::to_string(rPartIndex) + " " + std::to_string(cPartIndex) << endl;
                 Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
-                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), index);
+                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
 
-                this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
+//                this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
 
-//                tmpStarImage.setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
                 this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
 
                 Mat_<Vec3b> queryImgTransform = this->sourceImages[index];
