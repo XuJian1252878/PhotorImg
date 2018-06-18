@@ -12,36 +12,109 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01bc9e8d-0cca-4ae5-bed5-c66b4d5677d6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/img/a1-1Y8A0106.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/a2-1Y8A0108.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/CXX.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/main.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/ImageRegistration" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/ImageRegistration.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/result-image-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/0_0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/0_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/0_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/0_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/0_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/1_0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/1_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/1_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/1_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/1_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/2_0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/2_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/2_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/2_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/2_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/3_0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/3_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/3_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/3_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/3_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/4_0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/4_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/4_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/4_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/target/4_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/translatre/4_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/translatre/4_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/translatre/4_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/translatre/4_4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.0/CompilerIdCXX/a.out" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/3.10.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/3.9.6/CompilerIdCXX/a.out" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImage.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImage.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImagePart.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImagePart.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImageRegistBuilder.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/StarImageRegistBuilder.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/Util.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/Util.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/ImageRegistration.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/clion-environment.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ImageRegistration" beforeDir="false" afterPath="$PROJECT_DIR$/ImageRegistration" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StarImagePart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/StarImagePart.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StarImagePart.h" beforeDir="false" afterPath="$PROJECT_DIR$/StarImagePart.h" afterDir="false" />
@@ -49,42 +122,95 @@
       <change beforePath="$PROJECT_DIR$/StarImageRegistBuilder.h" beforeDir="false" afterPath="$PROJECT_DIR$/StarImageRegistBuilder.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Util.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util.h" beforeDir="false" afterPath="$PROJECT_DIR$/Util.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ImageRegistration.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ImageRegistration" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ImageRegistration.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/0_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/0_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/0_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/0_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/0_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/0_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/0_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/0_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/0_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/0_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/1_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/1_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/1_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/1_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/1_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/1_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/1_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/1_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/1_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/1_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/2_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/2_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/2_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/2_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/2_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/2_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/2_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/2_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/2_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/2_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/3_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/3_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/3_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/3_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/3_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/3_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/3_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/3_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/01/3_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/01/3_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0101.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0101.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0102.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0102.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0103.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0103.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0104.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0104.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0105.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0105.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0106.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0106.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0107.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0107.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/0108.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/0108.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/0_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/0_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/0_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/0_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/0_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/0_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/0_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/0_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/0_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/0_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/1_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/1_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/1_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/1_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/1_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/1_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/1_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/1_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/1_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/1_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/2_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/2_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/2_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/2_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/2_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/2_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/2_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/2_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/2_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/2_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/3_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/3_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/3_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/3_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/3_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/3_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/3_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/3_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/02/3_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/02/3_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/0_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/0_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/0_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/0_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/0_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/0_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/0_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/0_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/0_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/0_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/1_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/1_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/1_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/1_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/1_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/1_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/1_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/1_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/1_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/1_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/2_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/2_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/2_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/2_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/2_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/2_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/2_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/2_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/2_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/2_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/3_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/3_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/3_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/3_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/3_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/3_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/3_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/3_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/match/3_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/match/3_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/result-image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/result-image.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/0_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/0_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/0_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/0_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/0_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/0_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/0_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/0_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/0_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/0_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/1_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/1_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/1_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/1_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/1_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/1_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/1_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/1_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/1_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/1_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/2_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/2_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/2_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/2_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/2_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/2_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/2_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/2_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/2_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/2_4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/3_0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/3_0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/3_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/3_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/3_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/3_2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/3_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/3_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/translatre/3_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/translatre/3_4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -102,8 +228,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="327">
+              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -114,7 +240,7 @@
       <file leaf-file-name="StarImagePart.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarImagePart.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
+            <state relative-caret-position="510">
               <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
             </state>
           </provider>
@@ -123,8 +249,8 @@
       <file leaf-file-name="StarImagePart.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarImagePart.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
+            <state relative-caret-position="1110">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
             </state>
           </provider>
         </entry>
@@ -132,8 +258,8 @@
       <file leaf-file-name="StarImageRegistBuilder.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StarImageRegistBuilder.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+            <state relative-caret-position="2088">
+              <caret line="355" column="18" lean-forward="true" selection-start-line="355" selection-start-column="18" selection-end-line="355" selection-end-column="18" />
               <folding>
                 <element signature="e#38#73#0" expanded="true" />
               </folding>
@@ -144,8 +270,8 @@
       <file leaf-file-name="StarImageRegistBuilder.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarImageRegistBuilder.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+            <state relative-caret-position="395">
+              <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
               <folding>
                 <element signature="e#194#213#0" expanded="true" />
               </folding>
@@ -156,11 +282,8 @@
       <file leaf-file-name="Util.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Util.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" selection-start-line="29" selection-end-line="29" selection-end-column="67" />
-              <folding>
-                <element signature="e#107#126#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -168,8 +291,11 @@
       <file leaf-file-name="Util.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Util.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="33" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="33" />
+            <state relative-caret-position="395">
+              <caret line="148" column="26" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+              <folding>
+                <element signature="e#38#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,7 +303,7 @@
       <file leaf-file-name="StarImage.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarImage.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
+            <state relative-caret-position="665">
               <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
             </state>
           </provider>
@@ -186,7 +312,7 @@
       <file leaf-file-name="StarImage.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarImage.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
+            <state relative-caret-position="1349">
               <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
             </state>
           </provider>
@@ -214,13 +340,13 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/StarImage.cpp" />
         <option value="$PROJECT_DIR$/StarImage.h" />
+        <option value="$PROJECT_DIR$/StarImageRegistBuilder.h" />
+        <option value="$PROJECT_DIR$/StarImagePart.h" />
+        <option value="$PROJECT_DIR$/StarImagePart.cpp" />
         <option value="$PROJECT_DIR$/Util.h" />
         <option value="$PROJECT_DIR$/Util.cpp" />
-        <option value="$PROJECT_DIR$/StarImagePart.h" />
-        <option value="$PROJECT_DIR$/StarImageRegistBuilder.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/StarImagePart.cpp" />
         <option value="$PROJECT_DIR$/StarImageRegistBuilder.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -241,6 +367,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +384,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,8 +393,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/img" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -344,12 +470,12 @@
       <workItem from="1527725308093" duration="755000" />
       <workItem from="1527930131183" duration="107000" />
       <workItem from="1527953017555" duration="562000" />
-      <workItem from="1528556268811" duration="3336000" />
+      <workItem from="1529284649172" duration="13281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134342000" />
+    <option name="totallyTimeSpent" value="137117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -361,30 +487,18 @@
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32994923" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32820514" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3476923" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3476923" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32923076" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39589745" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32923076" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28820512" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23749247" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32994923" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32923076" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39589745" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3476923" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32820514" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3251282" />
-      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,20 +511,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/StarImagePart.cpp</url>
-          <line>100</line>
-          <option name="timeStamp" value="87" />
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>173</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/StarImagePart.cpp</url>
-          <line>96</line>
-          <option name="timeStamp" value="90" />
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>23</line>
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="91" />
+      <option name="time" value="86" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/StarImage.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="55" column="55" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/StarImage.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="665">
@@ -473,9 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="21" selection-start-line="21" selection-end-line="21" selection-end-column="74" />
-          <folding>
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,62 +790,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Util.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" selection-start-line="29" selection-end-line="29" selection-end-column="67" />
-          <folding>
-            <element signature="e#107#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Util.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/opencv/modules/core/src/copy.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="384" selection-start-line="384" selection-end-line="384" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StarImage.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
+        <state relative-caret-position="665">
           <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StarImage.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
+        <state relative-caret-position="1349">
           <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StarImagePart.h">
+    <entry file="file://$PROJECT_DIR$/Util.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        <state relative-caret-position="228">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Util.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="148" column="26" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+          <folding>
+            <element signature="e#38#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StarImagePart.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
+        <state relative-caret-position="1110">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StarImagePart.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="327">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -736,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StarImageRegistBuilder.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state relative-caret-position="395">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
           <folding>
             <element signature="e#194#213#0" expanded="true" />
           </folding>
@@ -746,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StarImageRegistBuilder.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+        <state relative-caret-position="2088">
+          <caret line="355" column="18" lean-forward="true" selection-start-line="355" selection-start-column="18" selection-end-line="355" selection-end-column="18" />
           <folding>
             <element signature="e#38#73#0" expanded="true" />
           </folding>

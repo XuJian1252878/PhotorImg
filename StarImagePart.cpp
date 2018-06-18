@@ -52,10 +52,10 @@ void StarImagePart::setImage(Mat_<Vec3b> imageMat) {
 /**
  * 前提 this->imagePart 初始为0矩阵
  * @param resultImg 当前被配准的 图片部分
- * @param queryImgTransform 经过 homo 射影变换参数变换后的一整副图像，以当前的 targetSkyPart为基准
+ * @param targetImg 作为配准基准的 图像目标区域
  * @param imageCount 一共有多少张图片需要被配准
  */
-void StarImagePart::addImagePixelValue(Mat& resultImg,
+void StarImagePart::addImagePixelValue(Mat& resultImg, Mat& targetImg,
                                        Mat& queryImgTransform, Mat& skyMaskImg, int imageCount) {
 
 

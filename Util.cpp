@@ -2,17 +2,9 @@
 // Created by 许舰 on 2018/3/11.
 //
 
+#include <sys/stat.h>
 #include "Util.h"
 
-Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo) {
-
-    //图像配准
-    Mat imageTransform;
-    warpPerspective(queryImg, imageTransform, homo, Size(queryImg.cols, queryImg.rows));
-
-    return imageTransform;
-
-}
 
 Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg) {
 
@@ -130,4 +122,49 @@ Mat_<Vec3b> superimposedImg(Mat_<Vec3b>& queryImg, Mat_<Vec3b>& trainImg) {
     warpPerspective(queryImg, imageTransform, homo, Size(trainImg.cols, trainImg.rows));
 
     return imageTransform;
+}
+
+
+int getFiles(string path, vector<string>& files) {
+    unsigned char isFile =0x8;
+    DIR* p_dir;
+    const char* str = path.c_str();
+
+    p_dir = opendir(str);
+    if (p_dir == NULL) {
+        cout << "can't open " + path << endl;
+        return -1;
+    }
+
+    struct dirent* p_dirent;
+    while (p_dirent = readdir(p_dir)) {
+        if (p_dirent->d_type == isFile) {
+            // 该file是文件信息
+            string tmpFileName = p_dirent->d_name;
+            if (tmpFileName =="." || tmpFileName == "..") {
+                continue;
+            } else {
+                // 获取文件状态信息
+                struct stat buf;
+                int result;
+                result = stat(tmpFileName.c_str(), &buf);
+
+                if (result == 0) {
+                    cout << "文件状态信息出错, " + tmpFileName << endl;
+                    return -1;
+                } else {
+                    cout << tmpFileName << endl;
+                    cout << buf.st_ctimespec.tv_sec << endl;
+                    cout << buf.st_mtimespec.tv_sec << endl;
+                }
+
+                files.push_back(path + "/" + tmpFileName);
+            }
+        }
+    }
+
+    closedir(p_dir);
+    sort(files.begin(), files.end());
+
+    return (int)files.size();
 }
