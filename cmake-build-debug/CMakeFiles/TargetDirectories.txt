@@ -1,3 +1,0 @@
-/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/cmake-build-debug/CMakeFiles/ImageRegistration.dir
