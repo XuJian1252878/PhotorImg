@@ -5,6 +5,13 @@
 #include <sys/stat.h>
 #include "Util.h"
 
+Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo) {
+    //图像配准
+    Mat imageTransform;
+    warpPerspective(queryImg, imageTransform, homo, Size(queryImg.cols, queryImg.rows));
+
+    return imageTransform;
+}
 
 Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg) {
 
