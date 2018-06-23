@@ -94,6 +94,8 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                     queryImgTransform = getTransformImgByHomo(queryImgTransform, homo);
                     string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
                     imwrite(sfile, queryImgTransform);
+                } else {
+                    queryImgTransform = this->targetImage;
                 }
 
                 Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();

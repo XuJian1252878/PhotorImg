@@ -91,13 +91,15 @@ int main( int argc, char** argv )
         std::vector<Mat_<Vec3b>> sourceImages;
         sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
 
-//        for (int j = index; j < targetIndex; j ++) {
-//            sourceImages[0] = process(sourceImages, targetImage);
-//        }
+        for (int j = index + 1; j < targetIndex; j ++) {
+            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
+            sourceImages[0] = process(sourceImages, tmpResult);
+            imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/test/"+ std::to_string(j)+".jpg", sourceImages[0]);
+        }
 
-        sourceImages[0] = process(sourceImages, targetImage);
+//        sourceImages[0] = process(sourceImages, targetImage);
 
-        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
         imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
     }
 
@@ -106,13 +108,14 @@ int main( int argc, char** argv )
         std::vector<Mat_<Vec3b>> sourceImages;
         sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
 
-//        for (int j = index; j < targetIndex; j ++) {
-//            sourceImages[0] = process(sourceImages, targetImage);
-//        }
+        for (int j = index; j < targetIndex; j ++) {
+            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
+            sourceImages[0] = process(sourceImages, tmpResult);
+        }
 
-        sourceImages[0] = process(sourceImages, targetImage);
+//        sourceImages[0] = process(sourceImages, targetImage);
 
-        Mat tmpResult = sourceImages[0];  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
         imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
     }
 
