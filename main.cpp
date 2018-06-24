@@ -73,7 +73,7 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 }
 
 /** @function main */
-int main( int argc, char** argv )
+int main(int argc, char** argv)
 {
 
     vector<string> files;

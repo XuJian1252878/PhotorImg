@@ -14,12 +14,18 @@
  * @param rowPartIndex
  * @param columnPartIndex
  */
-StarImagePart::StarImagePart(const Mat parentMat, int atParentStartRowIndex, int atParentEndRowIndex,
-              int atParentStartColumnIndex, int atParentEndColumnIndex, int rowPartIndex, int columnPartIndex) {
+StarImagePart::StarImagePart(const Mat parentMat,
+                             int atParentStartRowIndex, int atParentEndRowIndex,
+                             int atParentStartColumnIndex, int atParentEndColumnIndex,
+                             int rowPartIndex, int columnPartIndex,
+                             int alignStartRowIndex, int alignEndRowIndex,
+                             int alignStartColumnIndex, int alignEndColumnIndex) {
     // [atParentStartRowIndex, atParentEndRowIndex)  [atParentStartColumnIndex, atParentEndColumnIndex)
+    // [alignStartRowIndex, alignEndRowIndex)  [alignStartColumnIndex, alignEndColumnIndex)
 
-    this->imagePart = parentMat(Range(atParentStartRowIndex, atParentEndRowIndex),
-                                Range(atParentStartColumnIndex, atParentEndColumnIndex));
+    this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex),
+                                Range(alignStartColumnIndex, alignEndColumnIndex));
+
     this->rowPartIndex = rowPartIndex;
     this->columnPartIndex = columnPartIndex;
 
@@ -27,6 +33,11 @@ StarImagePart::StarImagePart(const Mat parentMat, int atParentStartRowIndex, int
     this->atParentEndRowIndex = atParentEndRowIndex;
     this->atParentStartColumnIndex = atParentStartColumnIndex;
     this->atParentEndColumnIndex = atParentEndColumnIndex;
+
+    this->alignStartRowIndex = alignStartRowIndex;
+    this->alignEndRowIndex = alignEndRowIndex;
+    this->alignStartColumnIndex = alignStartColumnIndex;
+    this->alignEndColumnIndex = alignEndColumnIndex;
 }
 
 

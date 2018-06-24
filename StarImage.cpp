@@ -45,6 +45,22 @@ void StarImage::splitImage() {
 
         for(int cIndex = 0; cIndex < this->columnParts; cIndex ++) {
 
+            // 上 左 下 右
+            int directions[] = {1, 1, 1, 1};
+            // 纵向范围确定
+            if (rIndex == 0) {
+                directions[0] = 0;
+            } else if (rIndex == this->rowParts - 1) {
+                directions[2] = 0;
+            }
+            // 横向范围确定
+            if (cIndex == 0) {
+                directions[1] = 0;
+            } else if (cIndex == this->columnParts - 1) {
+                directions[3] = 0;
+            }
+
+            // 确定最终结果拼接范围
             int atParentStartColumnIndex = cIndex * columnStep;
             int atParentEndColumnIndex = 0;
             if (cIndex == this->columnParts - 1) {
@@ -53,9 +69,18 @@ void StarImage::splitImage() {
                 atParentEndColumnIndex = (cIndex + 1) * columnStep;
             }
 
-            StarImagePart starImagePart = StarImagePart(this->image, atParentStartRowIndex, atParentEndRowIndex,
+            // 确定对齐范围
+            int alignStartRowIndex = atParentStartRowIndex - directions[0] * rowStep / 2;
+            int alignEndRowIndex = atParentEndRowIndex + directions[2] * rowStep / 2;
+            int alignStartColumnIndex = atParentStartColumnIndex - directions[1] / 2;
+            int alignEndColumnIndex = atParentEndColumnIndex + directions[3] / 2;
+
+            StarImagePart starImagePart = StarImagePart(this->image,
+                                                        atParentStartRowIndex, atParentEndRowIndex,
                                                         atParentStartColumnIndex, atParentEndColumnIndex,
-                                                        rIndex, cIndex);
+                                                        rIndex, cIndex,
+                                                        alignStartRowIndex, alignEndRowIndex,
+                                                        alignStartColumnIndex, alignEndColumnIndex);
 
             this->starImageParts[rIndex].push_back(starImagePart);
 
