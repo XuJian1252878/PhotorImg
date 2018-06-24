@@ -61,7 +61,9 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0108.jpg", skyRes);
 
     Mat groundRes;
-    addWeighted(groundImgMat, 0.5, groundImgs[0], 0.5, 0, groundRes);
+    groundImgs.push_back(groundImgMat);
+    addMeanImgs(groundImgs).copyTo(groundRes, groundMaskImgMat);
+//    addWeighted(groundImgMat, 0.5, groundImgs[0], 0.5, 0, groundRes);
 
     Mat finalRes = skyRes | groundRes;
 
@@ -86,38 +88,51 @@ int main( int argc, char** argv )
     string targetImgPath = files[files.size() / 2];
     Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
 
-    for (int index = 0; index < targetIndex; index ++) {
-        string sourceImgPath = files[index];
-        std::vector<Mat_<Vec3b>> sourceImages;
-        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
+//    // 多张整合成一张照片的逻辑
+//    std::vector<Mat_<Vec3b>> sourceImages;
+//    for (int i = 0 ; i < files.size(); i ++) {
+//        if (i == targetIndex) {
+//            continue;
+//        }
+//
+//        cout << files[i] << endl;
+//        sourceImages.push_back(imread(files[i], IMREAD_UNCHANGED));
+//    }
+//
+//    Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", tmpResult);
 
-        for (int j = index + 1; j < targetIndex; j ++) {
-            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
-            sourceImages[0] = process(sourceImages, tmpResult);
-            imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/test/"+ std::to_string(j)+".jpg", sourceImages[0]);
-        }
 
-//        sourceImages[0] = process(sourceImages, targetImage);
 
-        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
-        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
-    }
-
-    for (int index = (int)files.size() - 1; index > targetIndex; index --) {
-        string sourceImgPath = files[index];
-        std::vector<Mat_<Vec3b>> sourceImages;
-        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
-
-        for (int j = index; j < targetIndex; j ++) {
-            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
-            sourceImages[0] = process(sourceImages, tmpResult);
-        }
-
-//        sourceImages[0] = process(sourceImages, targetImage);
-
-        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
-        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
-    }
+//    // 11 张结果照片的逻辑
+//    for (int index = 0; index < targetIndex; index ++) {
+//        string sourceImgPath = files[index];
+//        std::vector<Mat_<Vec3b>> sourceImages;
+//        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
+//
+//        for (int j = index + 1; j < targetIndex; j ++) {
+//            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
+//            sourceImages[0] = process(sourceImages, tmpResult);
+//            imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/test/"+ std::to_string(j)+".jpg", sourceImages[0]);
+//        }
+//
+//        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
+//    }
+//
+//    for (int index = (int)files.size() - 1; index > targetIndex; index --) {
+//        string sourceImgPath = files[index];
+//        std::vector<Mat_<Vec3b>> sourceImages;
+//        sourceImages.push_back(imread(sourceImgPath, IMREAD_UNCHANGED));
+//
+//        for (int j = index; j < targetIndex; j ++) {
+//            Mat_<Vec3b> tmpResult = imread(files[j], IMREAD_UNCHANGED);
+//            sourceImages[0] = process(sourceImages, tmpResult);
+//        }
+//
+//        Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+//        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image-" + std::to_string(index) + ".jpg", tmpResult);
+//    }
 
 }
 

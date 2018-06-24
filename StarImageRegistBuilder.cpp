@@ -65,8 +65,10 @@ void StarImageRegistBuilder::setTargetImagePath(string imgPath) {
 Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 
     // 最终配准的图像信息
-    StarImage resultStarImage = StarImage(Mat::zeros(this->targetStarImage.getImage().rows,
-                                          this->targetStarImage.getImage().cols, this->targetStarImage.getImage().type()),
+
+    StarImage resultStarImage = StarImage(Mat(this->targetStarImage.getImage().rows,
+                                              this->targetStarImage.getImage().cols,
+                                              this->targetStarImage.getImage().type(), cv::Scalar(0, 0, 0)),
                                           this->rowParts, this->columnParts);
 
     // 开始对图像的每一个部分进行对齐操作，分别与targetStarImage 做对比
@@ -87,24 +89,24 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 
 //                this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
 
-                this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
+//                this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
 
-                Mat_<Vec3b> queryImgTransform = this->sourceImages[index];
+                Mat_<Vec3b>& queryImgTransform = this->sourceImages[index];
                 if (existHomo) {
                     queryImgTransform = getTransformImgByHomo(queryImgTransform, homo);
-                    string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                    imwrite(sfile, queryImgTransform);
                 } else {
                     queryImgTransform = this->targetImage;
                 }
+                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                imwrite(sfile, queryImgTransform);
 
-                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
-                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile, sourceImg);
-                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(sourceImg, queryImgTransform, this->skyMaskMat, this->imageCount);
+//                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
+//                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+//                imwrite(sfile, tmpRegistMat);
+                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
 
                 Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
                 imwrite(sfile1, sourceImg1);
 
             }

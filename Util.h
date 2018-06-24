@@ -21,6 +21,7 @@ using namespace cv;
 using namespace std;
 using namespace cv::xfeatures2d;
 
+Mat_<Vec3b> addMeanImgs(std::vector<Mat_<Vec3b>>& sourceImages);
 
 Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg);
 

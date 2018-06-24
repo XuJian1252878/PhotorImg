@@ -13,6 +13,23 @@ Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo) {
     return imageTransform;
 }
 
+/**
+ * 按照 平均比例将图片叠加到一起
+ * @param sourceImages
+ * @return
+ */
+Mat_<Vec3b> addMeanImgs(std::vector<Mat_<Vec3b>>& sourceImages) {
+    Mat_<Vec3b> resImage;
+    if (sourceImages.size() <= 0) {
+        return resImage;
+    }
+    resImage = Mat(sourceImages[0].rows, sourceImages[0].cols, sourceImages[0].type());
+    for (int index = 0; index < sourceImages.size(); index ++) {
+        resImage += (sourceImages[index] / sourceImages.size());
+    }
+    return resImage;
+}
+
 Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg) {
 
     int count = images.size();
