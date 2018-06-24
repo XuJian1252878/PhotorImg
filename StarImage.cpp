@@ -102,9 +102,7 @@ Mat StarImage::mergeStarImageParts() {
 
             for (int i = atParentStartRowIndex, it = 0; i < atParentEndRowIndex; i ++, it ++) {
                 for (int j = atParentStartColumnIndex, jt = 0; j < atParentEndColumnIndex; j ++, jt ++) {
-//                        resultImage.at<cv::Vec3b>(i, j) = tmpPart.getImage().at<cv::Vec3b>(it, jt);
                     resultImage(i, j) = tmpImage(it, jt);
-//                    cout << "merge: " << std::to_string(i) << "\t" << std::to_string(j) << endl;
                 }
             }
 

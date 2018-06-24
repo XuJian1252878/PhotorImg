@@ -1,0 +1,6 @@
+.idea/
+CMakeFiles/
+ImageRegistration
+cmake-build-debug/
+img/
+

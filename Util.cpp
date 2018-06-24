@@ -156,7 +156,6 @@ int getFiles(string path, vector<string>& files) {
 
     p_dir = opendir(str);
     if (p_dir == NULL) {
-        cout << "can't open " + path << endl;
         return -1;
     }
 
@@ -174,12 +173,11 @@ int getFiles(string path, vector<string>& files) {
                 result = stat(tmpFileName.c_str(), &buf);
 
                 if (result == 0) {
-                    cout << "文件状态信息出错, " + tmpFileName << endl;
                     return -1;
                 } else {
-                    cout << tmpFileName << endl;
-                    cout << buf.st_ctimespec.tv_sec << endl;
-                    cout << buf.st_mtimespec.tv_sec << endl;
+//                    cout << tmpFileName << endl;
+//                    cout << buf.st_ctimespec.tv_sec << endl;
+//                    cout << buf.st_mtimespec.tv_sec << endl;
                 }
 
                 files.push_back(path + "/" + tmpFileName);

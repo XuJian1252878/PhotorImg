@@ -88,19 +88,19 @@ int main( int argc, char** argv )
     string targetImgPath = files[files.size() / 2];
     Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
 
-//    // 多张整合成一张照片的逻辑
-//    std::vector<Mat_<Vec3b>> sourceImages;
-//    for (int i = 0 ; i < files.size(); i ++) {
-//        if (i == targetIndex) {
-//            continue;
-//        }
-//
-//        cout << files[i] << endl;
-//        sourceImages.push_back(imread(files[i], IMREAD_UNCHANGED));
-//    }
-//
-//    Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
-//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", tmpResult);
+    // 多张整合成一张照片的逻辑
+    std::vector<Mat_<Vec3b>> sourceImages;
+    for (int i = 0 ; i < files.size(); i ++) {
+        if (i == targetIndex) {
+            continue;
+        }
+
+        cout << files[i] << endl;
+        sourceImages.push_back(imread(files[i], IMREAD_UNCHANGED));
+    }
+
+    Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", tmpResult);
 
 
 

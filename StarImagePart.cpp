@@ -43,9 +43,7 @@ Mat StarImagePart::getImage() {
  * @param imageMat
  */
 void StarImagePart::setImage(Mat_<Vec3b> imageMat) {
-//    cout << std::to_string(this->imagePart.rows) << "\t" << std::to_string(this->imagePart.cols) << endl;
     this->imagePart = imageMat;
-//    cout << std::to_string(imageMat.rows) << "\t" << std::to_string(imageMat.cols) << endl;
 }
 
 

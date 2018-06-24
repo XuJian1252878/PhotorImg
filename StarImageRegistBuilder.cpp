@@ -82,14 +82,8 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 Mat homo;
                 bool existHomo = false;
 
-
-//                cout << "registration: " << std::to_string(rPartIndex) + " " + std::to_string(cPartIndex) << endl;
                 Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
                                                          this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
-
-//                this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
-
-//                this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
 
                 Mat_<Vec3b>& queryImgTransform = this->sourceImages[index];
                 if (existHomo) {
@@ -97,18 +91,8 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 } else {
                     queryImgTransform = this->targetImage;
                 }
-                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile, queryImgTransform);
 
-//                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
-//                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//                imwrite(sfile, tmpRegistMat);
                 resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
-
-                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile1, sourceImg1);
-
             }
         }
     }
@@ -185,8 +169,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     vector<Point2f> imagePoints1, imagePoints2;
     std::map<int, DMatch> matchRepeatRecords;
     for (int index = 0; index < tempMatches.size(); index ++) {
-        cout << tempMatches[index].distance << "\n";
-//        int queryIdx = matches[index].queryIdx;
         int trainIdx = tempMatches[index].trainIdx;
 
         // 记录标准图像中的每个点被配准了多少次，如果被配准多次，那么说明这个特征点匹配不合格
@@ -267,18 +249,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
         }
     }
 
-    // 测试代码：
-    Mat img_matches;
-    drawMatches( sourceImg, keypoints_1, targetImg, keypoints_2, matches, img_matches );
-    int rPartIndex = sourceImagePart.getRowPartIndex();
-    int cPartIndex = sourceImagePart.getColumnPartIndex();
-    string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/01/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-    string sfile2 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/02/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-    imwrite(sfile1, sourceImg);
-    imwrite(sfile2, targetImg);
-    string matchPath = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/match/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-    imwrite(matchPath, img_matches);
-
     int IMG_MATCH_POINT_THRESHOLD = 10;  // 这里是个做文章的地方
 
     // 对应图片部分中没有特征点的情况（导致计算出的映射关系不佳，至少要4对匹配点才能计算出匹配关系）
@@ -295,7 +265,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     Mat homo = findHomography(imagePoints1, imagePoints2, CV_RANSAC);
     // 也可以使用getPerspectiveTransform方法获得透视变换矩阵，不过要求只能有4个点，效果稍差
     // Mat homo = getPerspectiveTransform(imagePoints1,imagePoints2);
-    cout<< "变换矩阵为：\n" << homo << endl << endl; //输出映射矩阵
     /**
      * 这里如果有一副图片中的特征点过少，导致查询图片部分 中的多个特征点直接 和 目标图片部分 中的同一个特征点相匹配，
      * 那么会导致算不出变换矩阵，变换矩阵为 [] 。导致错误。
@@ -315,16 +284,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     //图像配准
     Mat sourceImgTransform;
     warpPerspective(sourceImg, sourceImgTransform ,homo , Size(targetImg.cols, targetImg.rows));
-
-    string sfile3 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/translatre/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-    imwrite(sfile3, sourceImgTransform);
-
-//    Mat testMask = ~ sourceImgTransform;
-//    Mat boundary;
-//    sourceImg.copyTo(boundary, testMask);
-//    string sfile4 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/boundary/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//    imwrite(sfile4, boundary);
-
 
     return sourceImgTransform;
 }
