@@ -72,8 +72,8 @@ void StarImage::splitImage() {
             // 确定对齐范围
             int alignStartRowIndex = atParentStartRowIndex - directions[0] * rowStep / 2;
             int alignEndRowIndex = atParentEndRowIndex + directions[2] * rowStep / 2;
-            int alignStartColumnIndex = atParentStartColumnIndex - directions[1] / 2;
-            int alignEndColumnIndex = atParentEndColumnIndex + directions[3] / 2;
+            int alignStartColumnIndex = atParentStartColumnIndex - directions[1] * columnStep / 2;
+            int alignEndColumnIndex = atParentEndColumnIndex + directions[3] * columnStep / 2;
 
             StarImagePart starImagePart = StarImagePart(this->image,
                                                         atParentStartRowIndex, atParentEndRowIndex,
