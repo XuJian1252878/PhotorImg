@@ -79,6 +79,10 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
         for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
             for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex ++) {
 
+//                Mat_<Vec3b> sourceImg = resultStarImage.getImage();
+//                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+//                imwrite(sfile1, sourceImg);
+
                 Mat homo;
                 bool existHomo = false;
 
@@ -101,13 +105,14 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 imwrite(sfile, queryImgTransform);
 
 //                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
+//                Mat_<Vec3b> sourceImg = resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
                 string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
                 imwrite(sfile1, tmpRegistMat);
                 resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
 
-//                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-//                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//                imwrite(sfile1, sourceImg1);
+                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
+                string sfile2 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+                imwrite(sfile2, sourceImg1);
 
             }
         }

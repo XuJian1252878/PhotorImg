@@ -119,6 +119,9 @@ Mat StarImage::mergeStarImageParts() {
 
             StarImagePart tmpPart = this->starImageParts[rPartIndex][cPartIndex];
 
+//            string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/merge_part/"  + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
+//            imwrite(sfile, tmpPart.getImage());
+
             int atParentStartRowIndex = tmpPart.getAtParentStartRowIndex();
             int atParentEndRowIndex = tmpPart.getAtParentEndRowIndex();
             int atParentStartColumnIndex = tmpPart.getAtParentStartColumnIndex();
@@ -131,8 +134,8 @@ Mat StarImage::mergeStarImageParts() {
 
             Mat_<Vec3b> tmpAlignImage = tmpPart.getImage();
 
-            int rowStart = atParentStartRowIndex - alignStartRowIndex, rowEnd = atParentEndRowIndex - rowStart;
-            int columnStart = atParentStartColumnIndex - alignStartColumnIndex, columnEnd = atParentEndColumnIndex - columnStart;
+            int rowStart = atParentStartRowIndex - alignStartRowIndex, rowEnd = atParentEndRowIndex - alignStartRowIndex;
+            int columnStart = atParentStartColumnIndex - alignStartColumnIndex, columnEnd = atParentEndColumnIndex - alignStartColumnIndex;
 
             Mat_<Vec3b> tmpImage = tmpAlignImage(Range(rowStart, rowEnd),
                     Range(columnStart, columnEnd));

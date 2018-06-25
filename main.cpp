@@ -95,9 +95,9 @@ int main(int argc, char** argv)
             continue;
         }
 
-        if (i != 3) {
-            continue;
-        }
+//        if (i != 3) {
+//            continue;
+//        }
 
         cout << files[i] << endl;
         sourceImages.push_back(imread(files[i], IMREAD_UNCHANGED));

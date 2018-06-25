@@ -23,8 +23,12 @@ StarImagePart::StarImagePart(const Mat parentMat,
     // [atParentStartRowIndex, atParentEndRowIndex)  [atParentStartColumnIndex, atParentEndColumnIndex)
     // [alignStartRowIndex, alignEndRowIndex)  [alignStartColumnIndex, alignEndColumnIndex)
 
+    /**
+     * this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex), Range(alignStartColumnIndex, alignEndColumnIndex))
+     * 这样的话，只是对父图的一部分进行引用，对this->imagePart做改变，那么父图也将会改变
+     */
     this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex),
-                                Range(alignStartColumnIndex, alignEndColumnIndex));
+                                Range(alignStartColumnIndex, alignEndColumnIndex)).clone();
 
     this->rowPartIndex = rowPartIndex;
     this->columnPartIndex = columnPartIndex;
