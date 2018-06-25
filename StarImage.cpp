@@ -118,12 +118,24 @@ Mat StarImage::mergeStarImageParts() {
         for(int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex ++) {
 
             StarImagePart tmpPart = this->starImageParts[rPartIndex][cPartIndex];
+
             int atParentStartRowIndex = tmpPart.getAtParentStartRowIndex();
             int atParentEndRowIndex = tmpPart.getAtParentEndRowIndex();
             int atParentStartColumnIndex = tmpPart.getAtParentStartColumnIndex();
             int atParentEndColumnIndex = tmpPart.getAtParentEndColumnIndex();
 
-            Mat_<Vec3b> tmpImage = tmpPart.getImage();
+            int alignStartRowIndex = tmpPart.getAlignStartRowIndex();
+            int alignEndRowIndex = tmpPart.getAlignEndRowIndex();
+            int alignStartColumnIndex = tmpPart.getAlignStartColumnIndex();
+            int alignEndColumnIndex = tmpPart.getAlignEndColumnIndex();
+
+            Mat_<Vec3b> tmpAlignImage = tmpPart.getImage();
+
+            int rowStart = atParentStartRowIndex - alignStartRowIndex, rowEnd = atParentEndRowIndex - rowStart;
+            int columnStart = atParentStartColumnIndex - alignStartColumnIndex, columnEnd = atParentEndColumnIndex - columnStart;
+
+            Mat_<Vec3b> tmpImage = tmpAlignImage(Range(rowStart, rowEnd),
+                    Range(columnStart, columnEnd));
 
             for (int i = atParentStartRowIndex, it = 0; i < atParentEndRowIndex; i ++, it ++) {
                 for (int j = atParentStartColumnIndex, jt = 0; j < atParentEndColumnIndex; j ++, jt ++) {

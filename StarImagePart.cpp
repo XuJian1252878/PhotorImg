@@ -73,11 +73,18 @@ void StarImagePart::addImagePixelValue(Mat& resultImg,
     this->imagePart += (resultImg / imageCount * 1.0);
 
     // 取出当前mask起始点的位置
-    int rMaskIndex = this->getRowPartIndex() * this->getImage().rows;
-    int cMaskIndex = this->getColumnPartIndex() * this->getImage().cols;
+//    int rMaskIndex = this->getRowPartIndex() * this->getImage().rows;
+//    int cMaskIndex = this->getColumnPartIndex() * this->getImage().cols;
+
+    int rMaskIndex = this->getAlignStartRowIndex();
+    int cMaskIndex = this->getAlignStartColumnIndex();
 
     for (int rIndex = 0; rIndex < this->imagePart.rows; rIndex ++) {
         for (int cIndex = 0; cIndex < this->imagePart.cols; cIndex ++) {
+
+            if (rMaskIndex + rIndex >= skyMaskImg.rows || cMaskIndex + cIndex >= skyMaskImg.cols) {
+                continue; ////
+            }
 
             int skyMaskPixel = skyMaskImg.at<uchar>(rMaskIndex + rIndex, cMaskIndex + cIndex);
             if (skyMaskPixel == 0) {
@@ -134,4 +141,20 @@ int StarImagePart::getRowPartIndex() const {
 
 int StarImagePart::getColumnPartIndex() const {
     return columnPartIndex;
+}
+
+int StarImagePart::getAlignStartRowIndex() const {
+    return alignStartRowIndex;
+}
+
+int StarImagePart::getAlignEndRowIndex() const {
+    return alignEndRowIndex;
+}
+
+int StarImagePart::getAlignStartColumnIndex() const {
+    return alignStartColumnIndex;
+}
+
+int StarImagePart::getAlignEndColumnIndex() const {
+    return alignEndColumnIndex;
 }

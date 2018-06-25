@@ -100,10 +100,10 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
                 imwrite(sfile, queryImgTransform);
 
-                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
+//                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
                 string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
                 imwrite(sfile1, tmpRegistMat);
-//                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
+                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
 
 //                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
 //                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";

@@ -63,4 +63,12 @@ public:
     int getRowPartIndex() const;
 
     int getColumnPartIndex() const;
+
+    int getAlignStartRowIndex() const;
+
+    int getAlignEndRowIndex() const;
+
+    int getAlignStartColumnIndex() const;
+
+    int getAlignEndColumnIndex() const;
 };
