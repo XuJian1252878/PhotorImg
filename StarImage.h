@@ -29,9 +29,9 @@ private:
 public:
     StarImage();
 
-    StarImage(Mat image, int rowParts, int columnParts);
+    StarImage(Mat image, int rowParts, int columnParts, bool isClone = false);
 
-    void splitImage();
+    void splitImage(bool isClone = false);
 
     StarImagePart& getStarImagePart(int rowPartIndex, int columnPartIndex);
 

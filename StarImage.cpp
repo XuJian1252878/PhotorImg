@@ -12,21 +12,22 @@ StarImage::StarImage() {
  * @param image
  * @param rowParts
  * @param columnParts
+ * @param isClone  StarImage中的imagePart是不是 原始oriImg 的引用, true 是；false 不是
  */
-StarImage::StarImage(Mat image, int rowParts, int columnParts) {
+StarImage::StarImage(Mat image, int rowParts, int columnParts, bool isClone) {
     this->image = image;
     this->rowParts = rowParts;
     this->columnParts = columnParts;
 
     // 初始化时就对每一个图片进行分块
-    splitImage();
+    splitImage(isClone);
 }
 
 
 /**
  *
  */
-void StarImage::splitImage() {
+void StarImage::splitImage(bool isClone) {
 
     this->initStarImageParts();
 
@@ -80,7 +81,8 @@ void StarImage::splitImage() {
                                                         atParentStartColumnIndex, atParentEndColumnIndex,
                                                         rIndex, cIndex,
                                                         alignStartRowIndex, alignEndRowIndex,
-                                                        alignStartColumnIndex, alignEndColumnIndex);
+                                                        alignStartColumnIndex, alignEndColumnIndex,
+                                                        isClone);
 
             this->starImageParts[rIndex].push_back(starImagePart);
 

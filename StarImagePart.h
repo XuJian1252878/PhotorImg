@@ -41,7 +41,8 @@ public:
                   int atParentStartColumnIndex, int atParentEndColumnIndex,
                   int rowPartIndex, int columnPartIndex,
                   int alignStartRowIndex, int alignEndRowIndex,
-                  int alignStartColumnIndex, int alignEndColumnIndex);
+                  int alignStartColumnIndex, int alignEndColumnIndex,
+                  bool isClone = false);
 
     Mat getImage();
 

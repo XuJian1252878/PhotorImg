@@ -69,7 +69,7 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
     StarImage resultStarImage = StarImage(Mat(this->targetStarImage.getImage().rows,
                                               this->targetStarImage.getImage().cols,
                                               this->targetStarImage.getImage().type(), cv::Scalar(0, 0, 0)),
-                                          this->rowParts, this->columnParts);
+                                          this->rowParts, this->columnParts, true); // true 表示 clone，深拷贝，不然会出现图片重叠的现象
 
     // 开始对图像的每一个部分进行对齐操作，分别与targetStarImage 做对比
     for (int index = 0; index < this->sourceStarImages.size(); index ++) {

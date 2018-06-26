@@ -19,7 +19,8 @@ StarImagePart::StarImagePart(const Mat parentMat,
                              int atParentStartColumnIndex, int atParentEndColumnIndex,
                              int rowPartIndex, int columnPartIndex,
                              int alignStartRowIndex, int alignEndRowIndex,
-                             int alignStartColumnIndex, int alignEndColumnIndex) {
+                             int alignStartColumnIndex, int alignEndColumnIndex,
+                             bool isClone) {
     // [atParentStartRowIndex, atParentEndRowIndex)  [atParentStartColumnIndex, atParentEndColumnIndex)
     // [alignStartRowIndex, alignEndRowIndex)  [alignStartColumnIndex, alignEndColumnIndex)
 
@@ -27,8 +28,15 @@ StarImagePart::StarImagePart(const Mat parentMat,
      * this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex), Range(alignStartColumnIndex, alignEndColumnIndex))
      * 这样的话，只是对父图的一部分进行引用，对this->imagePart做改变，那么父图也将会改变
      */
-    this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex),
-                                Range(alignStartColumnIndex, alignEndColumnIndex)).clone();
+
+    if (isClone) {
+        this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex),
+                                    Range(alignStartColumnIndex, alignEndColumnIndex)).clone();
+    } else {
+        this->imagePart = parentMat(Range(alignStartRowIndex, alignEndRowIndex),
+                                    Range(alignStartColumnIndex, alignEndColumnIndex));
+    }
+
 
     this->rowPartIndex = rowPartIndex;
     this->columnPartIndex = columnPartIndex;
