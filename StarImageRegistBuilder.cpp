@@ -78,22 +78,11 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
         // 对于每一小块图像都做配准操作
         for (int rPartIndex = 0; rPartIndex < this->rowParts; rPartIndex ++) {
             for (int cPartIndex = 0; cPartIndex < this->columnParts; cPartIndex ++) {
-
-//                Mat_<Vec3b> sourceImg = resultStarImage.getImage();
-//                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//                imwrite(sfile1, sourceImg);
-
                 Mat homo;
                 bool existHomo = false;
 
-
-//                cout << "registration: " << std::to_string(rPartIndex) + " " + std::to_string(cPartIndex) << endl;
                 Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
                                                          this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
-
-//                this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
-
-//                this->sourceStarImages[index].setStarImagePart(rPartIndex, cPartIndex, tmpRegistMat);
 
                 Mat_<Vec3b>& queryImgTransform = this->sourceImages[index];
                 if (existHomo) {
@@ -101,19 +90,7 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 } else {
                     queryImgTransform = this->targetImage;
                 }
-                string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/queryImgTransform/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile, queryImgTransform);
-
-//                Mat_<Vec3b> sourceImg =  this->sourceStarImages[index].getStarImagePart(rPartIndex, cPartIndex).getImage();
-//                Mat_<Vec3b> sourceImg = resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/sourceImg/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile1, tmpRegistMat);
                 resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
-
-                Mat_<Vec3b> sourceImg1 =  resultStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage();
-                string sfile2 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/addImagePixelValue/" + std::to_string(index) + "_" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-                imwrite(sfile2, sourceImg1);
-
             }
         }
     }
@@ -190,7 +167,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     vector<Point2f> imagePoints1, imagePoints2;
     std::map<int, DMatch> matchRepeatRecords;
     for (int index = 0; index < tempMatches.size(); index ++) {
-        cout << tempMatches[index].distance << "\n";
 //        int queryIdx = matches[index].queryIdx;
         int trainIdx = tempMatches[index].trainIdx;
 
@@ -300,7 +276,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     Mat homo = findHomography(imagePoints1, imagePoints2, CV_RANSAC);
     // 也可以使用getPerspectiveTransform方法获得透视变换矩阵，不过要求只能有4个点，效果稍差
     // Mat homo = getPerspectiveTransform(imagePoints1,imagePoints2);
-    cout<< "变换矩阵为：\n" << homo << endl << endl; //输出映射矩阵
     /**
      * 这里如果有一副图片中的特征点过少，导致查询图片部分 中的多个特征点直接 和 目标图片部分 中的同一个特征点相匹配，
      * 那么会导致算不出变换矩阵，变换矩阵为 [] 。导致错误。
@@ -323,13 +298,6 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
     string sfile3 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/translatre/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
     imwrite(sfile3, sourceImgTransform);
-
-//    Mat testMask = ~ sourceImgTransform;
-//    Mat boundary;
-//    sourceImg.copyTo(boundary, testMask);
-//    string sfile4 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/boundary/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//    imwrite(sfile4, boundary);
-
 
     return sourceImgTransform;
 }

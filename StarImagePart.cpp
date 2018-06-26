@@ -66,9 +66,7 @@ Mat StarImagePart::getImage() {
  * @param imageMat
  */
 void StarImagePart::setImage(Mat_<Vec3b> imageMat) {
-//    cout << std::to_string(this->imagePart.rows) << "\t" << std::to_string(this->imagePart.cols) << endl;
     this->imagePart = imageMat;
-//    cout << std::to_string(imageMat.rows) << "\t" << std::to_string(imageMat.cols) << endl;
 }
 
 
@@ -85,9 +83,6 @@ void StarImagePart::addImagePixelValue(Mat& resultImg,
     this->imagePart += (resultImg / imageCount * 1.0);
 
     // 取出当前mask起始点的位置
-//    int rMaskIndex = this->getRowPartIndex() * this->getImage().rows;
-//    int cMaskIndex = this->getColumnPartIndex() * this->getImage().cols;
-
     int rMaskIndex = this->getAlignStartRowIndex();
     int cMaskIndex = this->getAlignStartColumnIndex();
 

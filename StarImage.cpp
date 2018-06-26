@@ -121,18 +121,13 @@ Mat StarImage::mergeStarImageParts() {
 
             StarImagePart tmpPart = this->starImageParts[rPartIndex][cPartIndex];
 
-//            string sfile = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/merge_part/"  + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
-//            imwrite(sfile, tmpPart.getImage());
-
             int atParentStartRowIndex = tmpPart.getAtParentStartRowIndex();
             int atParentEndRowIndex = tmpPart.getAtParentEndRowIndex();
             int atParentStartColumnIndex = tmpPart.getAtParentStartColumnIndex();
             int atParentEndColumnIndex = tmpPart.getAtParentEndColumnIndex();
 
             int alignStartRowIndex = tmpPart.getAlignStartRowIndex();
-            int alignEndRowIndex = tmpPart.getAlignEndRowIndex();
             int alignStartColumnIndex = tmpPart.getAlignStartColumnIndex();
-            int alignEndColumnIndex = tmpPart.getAlignEndColumnIndex();
 
             Mat_<Vec3b> tmpAlignImage = tmpPart.getImage();
 
@@ -144,9 +139,7 @@ Mat StarImage::mergeStarImageParts() {
 
             for (int i = atParentStartRowIndex, it = 0; i < atParentEndRowIndex; i ++, it ++) {
                 for (int j = atParentStartColumnIndex, jt = 0; j < atParentEndColumnIndex; j ++, jt ++) {
-//                        resultImage.at<cv::Vec3b>(i, j) = tmpPart.getImage().at<cv::Vec3b>(it, jt);
                     resultImage(i, j) = tmpImage(it, jt);
-//                    cout << "merge: " << std::to_string(i) << "\t" << std::to_string(j) << endl;
                 }
             }
 
