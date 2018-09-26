@@ -44,7 +44,7 @@ public:
                   int alignStartColumnIndex, int alignEndColumnIndex,
                   bool isClone = false);
 
-    Mat getImage();
+    Mat& getImage();
 
     void setImage(Mat_<Vec3b> imageMat);
 

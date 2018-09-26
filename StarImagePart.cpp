@@ -57,7 +57,7 @@ StarImagePart::StarImagePart(const Mat parentMat,
  *
  * @return
  */
-Mat StarImagePart::getImage() {
+Mat& StarImagePart::getImage() {
     return this->imagePart;
 }
 

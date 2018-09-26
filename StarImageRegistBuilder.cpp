@@ -91,8 +91,12 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                     queryImgTransform = this->targetImage;
                 }
                 resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
+
+                tmpStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage().release();
             }
         }
+
+        this->sourceImages[index].release();
     }
 
     // 对于配准图像和待配准图像做平均值操作（先买上目标图像的那一部分，这一段代码不能放在source整合的前面，不然图片会出现缝隙，原因待查）
