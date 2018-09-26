@@ -16,6 +16,8 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
     Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
     Mat skyMaskMat = ~groundMaskImgMat;
 
+    adjustMaskPixel(skyMaskMat);
+    adjustMaskPixel(groundMaskImgMat);
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0101.jpg", skyMaskMat);
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0102.jpg", groundMaskImgMat);
 

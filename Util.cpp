@@ -190,3 +190,23 @@ int getFiles(string path, vector<string>& files) {
 
     return (int)files.size();
 }
+
+
+int MASK_PIXEL_THRESHOLD = 127;
+bool adjustMaskPixel(Mat& mask) {
+    if (mask.rows <= 0 || mask.cols <= 0) {
+        return false;
+    }
+
+    for (int x = 0; x < mask.cols; x ++) {
+        for (int y = 0; y < mask.rows; y ++) {
+            if (mask.at<uchar>(y, x) < MASK_PIXEL_THRESHOLD) {
+                mask.at<uchar>(y, x) = 0;
+            } else {
+                mask.at<uchar>(y, x) = 255;
+            }
+        }
+    }
+
+    return true;
+}

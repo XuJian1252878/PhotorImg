@@ -36,3 +36,5 @@ int getFiles(string path, vector<string>& files);
  * @return
 */
 Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo);
+
+bool adjustMaskPixel(Mat& mask);
