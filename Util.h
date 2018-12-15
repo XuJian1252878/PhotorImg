@@ -23,7 +23,7 @@ using namespace cv::xfeatures2d;
 
 Mat_<Vec3b> addMeanImgs(std::vector<Mat_<Vec3b>>& sourceImages);
 
-Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg);
+Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg, Mat& skyMask);
 
 Mat_<Vec3b> superimposedImg(Mat_<Vec3b>& queryImg, Mat_<Vec3b>& trainImg);
 
@@ -38,3 +38,5 @@ int getFiles(string path, vector<string>& files);
 Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo);
 
 bool adjustMaskPixel(Mat& mask);
+
+float subtractionImage(Mat_<Vec3b>& img1, Mat_<Vec3b>& img2);

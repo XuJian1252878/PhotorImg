@@ -30,7 +30,7 @@ Mat_<Vec3b> addMeanImgs(std::vector<Mat_<Vec3b>>& sourceImages) {
     return resImage;
 }
 
-Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg) {
+Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg, Mat& skyMask) {
 
     int count = images.size();
     Mat resImg;
@@ -67,19 +67,35 @@ Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg) 
         // 生成匹配点信息
         FlannBasedMatcher matcher;
         std::vector< vector<DMatch> > knnMatches;
-        matcher.knnMatch(trainDescriptors, queryDescriptors, knnMatches, 2);
+        matcher.knnMatch(queryDescriptors, trainDescriptors, knnMatches, 2);
 
         // 筛选符合条件的特征点信息（最近邻次比率法）
         std::vector<DMatch> matches;
         vector<Point2f> queryMatchPoints, trainMatchPoints;  //  用于存储已经匹配上的特征点对
+        int skyBoundaryRange = (int)(skyMask.rows * 0.005);
         for (int index = 0; index < knnMatches.size(); index ++) {
             DMatch firstMatch = knnMatches[index][0];
             DMatch secondMatch = knnMatches[index][1];
+
+            int queryIdx = firstMatch.queryIdx;
+            int trainIdx = firstMatch.trainIdx;
+
+            int qy = (int)(queryKeyPoints[queryIdx].pt.y + skyBoundaryRange),
+                    ty = (int)(trainKeyPoints[trainIdx].pt.y + skyBoundaryRange);
+            int qx = (int)(queryKeyPoints[queryIdx].pt.x), tx = (int)(trainKeyPoints[trainIdx].pt.x);
+
+            if (qy >= skyMask.rows || ty >= skyMask.rows) {
+                continue;
+                // Mat.at(行数, 列数)
+            } else if ( skyMask.at<uchar>(qy, qx) == 0 || skyMask.at<uchar>(ty, tx) == 0 ) {
+                continue;
+            }
+
             if (firstMatch.distance < 0.75 * secondMatch.distance) {
                 matches.push_back(firstMatch);
 
-                trainMatchPoints.push_back(trainKeyPoints[firstMatch.queryIdx].pt);
-                queryMatchPoints.push_back(queryKeyPoints[firstMatch.trainIdx].pt);
+                trainMatchPoints.push_back(trainKeyPoints[firstMatch.trainIdx].pt);
+                queryMatchPoints.push_back(queryKeyPoints[firstMatch.queryIdx].pt);
             }
         }
 
@@ -209,4 +225,31 @@ bool adjustMaskPixel(Mat& mask) {
     }
 
     return true;
+}
+
+
+float subtractionImage(Mat_<Vec3b>& img1, Mat_<Vec3b>& img2) {
+
+    if (img1.rows != img2.rows || img1.cols != img2.cols) {
+        return -1;
+    }
+
+    float result = 0.0;
+    for (int col = 0; col < img1.cols; col ++) {
+        for (int row = 0; row < img1.rows; row ++) {
+            Vec3b a = img1.at<Vec3b>(row, col);
+            Vec3b b = img2.at<Vec3b>(row, col);
+
+            int gray1 = (a[0]*299 + a[1]*587 + a[2]*114 + 500) / 1000;
+            int gray2 = (b[0]*299 + b[1]*587 + b[2]*114 + 500) / 1000;
+
+            result += abs(gray1 - gray2);
+
+//            for (int i = 0; i < 3; i ++) {
+//                result += abs(a[i] - b[i]);
+//            }
+        }
+    }
+
+    return result / (img1.rows * img1.cols);
 }

@@ -11,9 +11,15 @@ using namespace std;
 
 //bool compare(Vec3b a, Vec3b b);
 
+int scale = 1;
+
 Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 
-    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
+    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
+//    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
+    Mat groundMaskImgMat;
+    resize(groundMaskImgMat_, groundMaskImgMat, Size(groundMaskImgMat_.cols/scale, groundMaskImgMat_.rows/scale), 0, 0, INTER_LINEAR);
+
     Mat skyMaskMat = ~groundMaskImgMat;
 
     adjustMaskPixel(skyMaskMat);
@@ -36,7 +42,7 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
         Mat mat = sourceImages[i];
         Mat skyPartMat;
         mat.copyTo(skyPartMat, skyMaskMat);
-        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0105.jpg", skyPartMat);
+        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0105/" + to_string(i) + ".jpg", skyPartMat);
         skyImgs.push_back(skyPartMat);
     }
 
@@ -45,7 +51,7 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
         Mat mat = sourceImages[i];
         Mat groundPartMat;
         mat.copyTo(groundPartMat, groundMaskImgMat);
-        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0106.jpg", groundPartMat);
+        imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0106/"+ to_string(i) + ".jpg", groundPartMat);
         groundImgs.push_back(groundPartMat);
     }
 
@@ -78,6 +84,30 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 int main(int argc, char** argv)
 {
 
+
+//    string sourceImagePath = "/Users/xujian/Downloads/14/8_before.jpg";
+//    string targetImagePath = "/Users/xujian/Downloads/14/8_after.jpg";
+//
+//    Mat_<Vec3b> sourceImage = imread(sourceImagePath, IMREAD_UNCHANGED);
+//    Mat_<Vec3b> targetImage = imread(targetImagePath, IMREAD_UNCHANGED);
+//
+//    cout << to_string(subtractionImage(sourceImage, targetImage)) << endl;
+
+
+//    string sourceImagePath = "/Users/xujian/Downloads/11/1Y8A4161.JPG";
+//    string targetImagePath = "/Users/xujian/Downloads/11/1Y8A4160.JPG";
+//
+//    std::vector<Mat_<Vec3b>> sourceImages;
+//    Mat_<Vec3b> sourceImage = imread(sourceImagePath, IMREAD_UNCHANGED);
+//    sourceImages.push_back(sourceImage);
+//    Mat_<Vec3b> targetImage = imread(targetImagePath, IMREAD_UNCHANGED);
+//
+//    Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+////    sourceImages.push_back(targetImage);
+////    Mat tmpResult = addMeanImgs(sourceImages, targetImage);
+//    imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", tmpResult);
+
+
     vector<string> files;
     string folder = "/Users/xujian/Downloads/11";
     getFiles(folder, files);
@@ -88,7 +118,18 @@ int main(int argc, char** argv)
 
     int targetIndex = (int)(files.size() / 2);
     string targetImgPath = files[files.size() / 2];
-    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
+    Mat_<Vec3b> targetImage_ = imread(targetImgPath, IMREAD_UNCHANGED);
+
+    FILE* pFile = fopen(targetImgPath.c_str(), "rb");
+    fseek(pFile, 0, SEEK_END);
+    int targetImageSize = ftell(pFile) / 1024 / 1024;
+    scale = 1;  // 设置缩放函数
+    while (targetImageSize >= 6) {
+        scale *= 2;
+        targetImageSize /= 2;
+    }
+    Mat_<Vec3b> targetImage;
+    resize(targetImage_, targetImage, Size(targetImage_.cols/scale, targetImage_.rows/scale), 0, 0, INTER_LINEAR);
 
     // 多张整合成一张照片的逻辑
     std::vector<Mat_<Vec3b>> sourceImages;
@@ -97,15 +138,26 @@ int main(int argc, char** argv)
             continue;
         }
 
-        if (i != 3) {
+        if (i == 6) {
             continue;
         }
 
         cout << files[i] << endl;
-        sourceImages.push_back(imread(files[i], IMREAD_UNCHANGED));
+        Mat_<Vec3b> tmp_ = imread(files[i], IMREAD_UNCHANGED);
+        Mat_<Vec3b> tmp;
+        resize(tmp_, tmp, Size(tmp_.cols/scale, tmp_.rows/scale), 0, 0, INTER_LINEAR);
+
+        sourceImages.push_back(tmp);
     }
 
     Mat tmpResult = process(sourceImages, targetImage);  // 以后的逻辑中, sourceImages不是vector，而变成了一个string的图片路径
+
+//    sourceImages.push_back(targetImage);
+//    Mat tmpResult = addMeanImgs(sourceImages);
+
+//    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
+//    Mat skyMaskMat = ~groundMaskImgMat;
+//    Mat tmpResult = superimposedImg(sourceImages, targetImage, skyMaskMat);
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/result-image.jpg", tmpResult);
 
 
