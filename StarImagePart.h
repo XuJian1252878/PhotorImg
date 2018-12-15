@@ -21,7 +21,7 @@ private:
     int rowPartIndex; // 是父图像中的行位置的第几部分
     int columnPartIndex;  // 是父图像中列位置的第几部分
 
-    // 最为最终结果的图片区域
+    // 作为最终结果的图片区域
     int atParentStartRowIndex;
     int atParentEndRowIndex;
     int atParentStartColumnIndex;

@@ -15,10 +15,13 @@ int scale = 1;
 
 Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 
-    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
+//    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
 //    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
-    Mat groundMaskImgMat;
-    resize(groundMaskImgMat_, groundMaskImgMat, Size(groundMaskImgMat_.cols/scale, groundMaskImgMat_.rows/scale), 0, 0, INTER_LINEAR);
+
+    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
+
+//    Mat groundMaskImgMat;
+//    resize(groundMaskImgMat_, groundMaskImgMat, Size(groundMaskImgMat_.cols/scale, groundMaskImgMat_.rows/scale), 0, 0, INTER_LINEAR);
 
     Mat skyMaskMat = ~groundMaskImgMat;
 
@@ -109,7 +112,7 @@ int main(int argc, char** argv)
 
 
     vector<string> files;
-    string folder = "/Users/xujian/Downloads/11";
+    string folder = "/Users/xujian/Downloads/12";
     getFiles(folder, files);
 
     if (files.size() <= 0) {
@@ -118,20 +121,25 @@ int main(int argc, char** argv)
 
     int targetIndex = (int)(files.size() / 2);
     string targetImgPath = files[files.size() / 2];
-    Mat_<Vec3b> targetImage_ = imread(targetImgPath, IMREAD_UNCHANGED);
+    Mat_<Vec3b> targetImage = imread(targetImgPath, IMREAD_UNCHANGED);
 
-    FILE* pFile = fopen(targetImgPath.c_str(), "rb");
-    fseek(pFile, 0, SEEK_END);
-    int targetImageSize = ftell(pFile) / 1024 / 1024;
-    scale = 1;  // 设置缩放函数
-    while (targetImageSize >= 6) {
-        scale *= 2;
-        targetImageSize /= 2;
-    }
-    Mat_<Vec3b> targetImage;
-    resize(targetImage_, targetImage, Size(targetImage_.cols/scale, targetImage_.rows/scale), 0, 0, INTER_LINEAR);
+//    Mat_<Vec3b> targetImage_ = imread(targetImgPath, IMREAD_UNCHANGED);
+//    FILE* pFile = fopen(targetImgPath.c_str(), "rb");
+//    fseek(pFile, 0, SEEK_END);
+//    int targetImageSize = ftell(pFile) / 1024 / 1024;
+//    scale = 1;  // 设置缩放函数
+//    while (targetImageSize >= 3) {
+//        scale *= 2;
+//        targetImageSize /= 2;
+//
+//        if (targetImage_.rows / scale < 1000 || targetImage_.cols /scale < 1000) {
+//            break;
+//        }
+//    }
+//    Mat_<Vec3b> targetImage;
+//    resize(targetImage_, targetImage, Size(targetImage_.cols/scale, targetImage_.rows/scale), 0, 0, INTER_LINEAR);
 
-    // 多张整合成一张照片的逻辑
+    // 多张整合成一张照片的逻辑（最终结果是1张）
     std::vector<Mat_<Vec3b>> sourceImages;
     for (int i = 0 ; i < files.size(); i ++) {
         if (i == targetIndex) {
@@ -162,7 +170,7 @@ int main(int argc, char** argv)
 
 
 
-//    // 11 张结果照片的逻辑
+//    // 11 张结果照片的逻辑（最终结果还是11张）
 //    for (int index = 0; index < targetIndex; index ++) {
 //        string sourceImgPath = files[index];
 //        std::vector<Mat_<Vec3b>> sourceImages;

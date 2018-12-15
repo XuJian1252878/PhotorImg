@@ -80,14 +80,15 @@ Mat_<Vec3b> superimposedImg(vector<Mat_<Vec3b>>& images, Mat_<Vec3b>& trainImg, 
             int queryIdx = firstMatch.queryIdx;
             int trainIdx = firstMatch.trainIdx;
 
-            int qy = (int)(queryKeyPoints[queryIdx].pt.y + skyBoundaryRange),
-                    ty = (int)(trainKeyPoints[trainIdx].pt.y + skyBoundaryRange);
-            int qx = (int)(queryKeyPoints[queryIdx].pt.x), tx = (int)(trainKeyPoints[trainIdx].pt.x);
+            int qy = (int)(queryKeyPoints[queryIdx].pt.y - skyBoundaryRange),
+                    ty = (int)(trainKeyPoints[trainIdx].pt.y - skyBoundaryRange);
+            int qx = (int)(queryKeyPoints[queryIdx].pt.x),
+                    tx = (int)(trainKeyPoints[trainIdx].pt.x);
 
             if (qy >= skyMask.rows || ty >= skyMask.rows) {
                 continue;
                 // Mat.at(行数, 列数)
-            } else if ( skyMask.at<uchar>(qy, qx) == 0 || skyMask.at<uchar>(ty, tx) == 0 ) {
+            } else if ( skyMask.at<uchar>(qy, qx) > 0 || skyMask.at<uchar>(ty, tx) > 0 ) {
                 continue;
             }
 

@@ -19,7 +19,7 @@ StarImageRegistBuilder::StarImageRegistBuilder(Mat_<Vec3b>& targetImage, std::ve
     this->imageCount = (int)sourceImages.size() + 1;
 
     this->skyMaskMat = skyMaskMat;
-    this->skyBoundaryRange = (int)(skyMaskMat.rows * 0.005);
+    this->skyBoundaryRange = (int)(skyMaskMat.rows * 0.05);
 
     this->targetImage = targetImage;
     this->sourceImages = sourceImages;
@@ -122,8 +122,8 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     Mat targetImg = targetImagePart.getImage(); // train image
 
     // 取出当前mask起始点的位置
-    int rMaskIndex = sourceImagePart.getRowPartIndex() * sourceImg.rows;
-    int cMaskIndex = sourceImagePart.getColumnPartIndex() * sourceImg.cols;
+    int rMaskIndex = sourceImagePart.getAlignStartRowIndex();
+    int cMaskIndex = sourceImagePart.getAlignStartColumnIndex();
 
 
 //        if( !sourceImg.data || !targetImg.data )
@@ -137,6 +137,19 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
     detector->detect( sourceImg, keypoints_1 );
     detector->detect( targetImg, keypoints_2 );
+
+    int rPartIndex = sourceImagePart.getRowPartIndex();
+    if (rPartIndex < 3)
+    {
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        cout << "rPartIndex: " << sourceImagePart.getRowPartIndex() << ", cPartIndex: " << sourceImagePart.getColumnPartIndex() << endl;
+        cout << "sourceImg: " << "row-" << sourceImg.rows << ", col-" << sourceImg.cols << endl;
+        cout << "keypoints_1: " << keypoints_1.size() << endl;
+        cout << "targetImg: " << "row-" << targetImg.rows << ", col-" << targetImg.cols << endl;
+        cout << "keypoints_2: " << keypoints_2.size() << endl;
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+    }
+
 
     // SurfDescriptorExtractor extractor;
     Ptr<SURF> extractor = SURF::create();
@@ -169,60 +182,46 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
 
     // 2. 对应 query image中的多个特征点对应 target image中的同一个特征点的情况（导致计算出的映射关系不佳），只取最小的匹配
     vector<Point2f> imagePoints1, imagePoints2;
-    std::map<int, DMatch> matchRepeatRecords;
-    for (int index = 0; index < tempMatches.size(); index ++) {
-//        int queryIdx = matches[index].queryIdx;
-        int trainIdx = tempMatches[index].trainIdx;
-
-        // 记录标准图像中的每个点被配准了多少次，如果被配准多次，那么说明这个特征点匹配不合格
-        if (matchRepeatRecords.count(trainIdx) <= 0) {
-            matchRepeatRecords[trainIdx] = tempMatches[index];
-        } else {
-            // 多个query image的特征点对应 target image的特征点时，只取距离最小的一个匹配（这个算是双向匹配的改进）
-            if (matchRepeatRecords[trainIdx].distance > tempMatches[index].distance) {
-                matchRepeatRecords[trainIdx] = tempMatches[index];
-            }
-        }
-    }
+//    std::map<int, DMatch> matchRepeatRecords;
+//    for (int index = 0; index < tempMatches.size(); index ++) {
+////        int queryIdx = matches[index].queryIdx;
+//        int trainIdx = tempMatches[index].trainIdx;
+//
+//        // 记录标准图像中的每个点被配准了多少次，如果被配准多次，那么说明这个特征点匹配不合格
+//        if (matchRepeatRecords.count(trainIdx) <= 0) {
+//            matchRepeatRecords[trainIdx] = tempMatches[index];
+//        } else {
+//            // 多个query image的特征点对应 target image的特征点时，只取距离最小的一个匹配（这个算是双向匹配的改进）
+//            if (matchRepeatRecords[trainIdx].distance > tempMatches[index].distance) {
+//                matchRepeatRecords[trainIdx] = tempMatches[index];
+//            }
+//        }
+//    }
 
 
     // 3. 计算匹配特征点对的标准差信息（标准差衡量标准之间只有相互的，那么要将标准差，以及match等一切中间过程存储起来，之后再进行配准，太耗内存）
     std::map<int, DMatch>::iterator iter;
-//    std::vector<double> matchDist;
-//    double matchDistCount = 0.0;  // dist数组个数
-//    double matchDistSum = 0.0;  // dist数组总和
-//    double matchDistMean = 0.0;  // dist数组平均值
-//    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
-//        matchDistSum += iter->second.distance;
-//        matchDistCount += 1;
-//    }
-//    matchDistMean = matchDistSum / matchDistCount;
-//    double matchDistAccum = 0.0;
-//    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
-//        double distance = iter->second.distance;
-//        matchDistAccum += (distance - matchDistMean) * (distance - matchDistMean);
-//    }
-//    double matchDistStdev = sqrt(matchDistAccum / (matchDistCount - 1));
-
     // 3.1 获取准确的最大最小值
-    double maxMatchDist = 0;
-    double minMatchDist = 100;
-    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
-        if (iter->second.distance < minMatchDist) {
-            minMatchDist = iter->second.distance;
-        }
-        if (iter->second.distance > maxMatchDist) {
-            maxMatchDist = iter->second.distance;
-        }
-    }
+//    double maxMatchDist = 0;
+//    double minMatchDist = 100;
+//    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
+//        if (iter->second.distance < minMatchDist) {
+//            minMatchDist = iter->second.distance;
+//        }
+//        if (iter->second.distance > maxMatchDist) {
+//            maxMatchDist = iter->second.distance;
+//        }
+//    }
 
     // 4. 根据特征点匹配对，分离出两幅图像中已经被匹配的特征点
     std::vector<DMatch> matches;
-    double matchThreshold = minMatchDist + (maxMatchDist - minMatchDist) * 0.1;  // 阈值越大，留下的特征点越多（这个阈值是一个做文章的地方）
+//    double matchThreshold = minMatchDist + (maxMatchDist - minMatchDist) * 0.1;  // 阈值越大，留下的特征点越多（这个阈值是一个做文章的地方）
     double slopeThreshold = 0.3;
-    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
+//    for (iter = matchRepeatRecords.begin(); iter != matchRepeatRecords.end(); iter ++) {
+    for (int index = 0; index < tempMatches.size(); index ++) {
 
-        DMatch match = iter->second;
+//        DMatch match = iter->second;
+        DMatch match = tempMatches[index];
         int queryIdx = match.queryIdx;
         int trainIdx = match.trainIdx;
 
@@ -245,8 +244,9 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
                                             (keypoints_2[trainIdx].pt.x + targetImg.cols) ) );
 
         // && iter->second.distance < matchThreshold
-        if ( slope < slopeThreshold && iter->second.distance < matchThreshold) {
-            matches.push_back(iter->second);
+        if ( slope < slopeThreshold) {
+//            matches.push_back(iter->second);
+            matches.push_back(match);
             imagePoints1.push_back(keypoints_1[queryIdx].pt);
             imagePoints2.push_back(keypoints_2[trainIdx].pt);
         }
@@ -255,7 +255,7 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     // 测试代码：
     Mat img_matches;
     drawMatches( sourceImg, keypoints_1, targetImg, keypoints_2, matches, img_matches );
-    int rPartIndex = sourceImagePart.getRowPartIndex();
+//    int rPartIndex = sourceImagePart.getRowPartIndex();
     int cPartIndex = sourceImagePart.getColumnPartIndex();
     string sfile1 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/01/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
     string sfile2 = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/02/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
@@ -264,8 +264,19 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     string matchPath = "/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/match/" + std::to_string(rPartIndex) + "_" + std::to_string(cPartIndex) + ".jpg";
     imwrite(matchPath, img_matches);
 
-    int IMG_MATCH_POINT_THRESHOLD = 10;  // 这里是个做文章的地方
+    if (rPartIndex < 3)
+    {
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        cout << "rPartIndex: " << sourceImagePart.getRowPartIndex() << ", cPartIndex: " << sourceImagePart.getColumnPartIndex() << endl;
+        cout << "sourceImg: " << "row-" << sourceImg.rows << ", col-" << sourceImg.cols << endl;
+        cout << "imagePoints1: " << imagePoints1.size() << endl;
+        cout << "targetImg: " << "row-" << targetImg.rows << ", col-" << targetImg.cols << endl;
+        cout << "imagePoints2: " << imagePoints2.size() << endl;
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+    }
 
+
+    int IMG_MATCH_POINT_THRESHOLD = 10;  // 这里是个做文章的地方
     // 对应图片部分中没有特征点的情况（导致计算出的映射关系不佳，至少要4对匹配点才能计算出匹配关系）
     if (imagePoints1.size() >= IMG_MATCH_POINT_THRESHOLD && imagePoints2.size() < IMG_MATCH_POINT_THRESHOLD) {
         // 没有特征点信息，那么说明这个区域是没有特征的，所以返回 查询图片部分，作为内容填充
