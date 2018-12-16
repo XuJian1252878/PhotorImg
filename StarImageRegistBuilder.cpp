@@ -139,16 +139,16 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     detector->detect( targetImg, keypoints_2 );
 
     int rPartIndex = sourceImagePart.getRowPartIndex();
-    if (rPartIndex < 3)
-    {
-        cout << "----------------------------------------------------------------------------------------------------------" << endl;
-        cout << "rPartIndex: " << sourceImagePart.getRowPartIndex() << ", cPartIndex: " << sourceImagePart.getColumnPartIndex() << endl;
-        cout << "sourceImg: " << "row-" << sourceImg.rows << ", col-" << sourceImg.cols << endl;
-        cout << "keypoints_1: " << keypoints_1.size() << endl;
-        cout << "targetImg: " << "row-" << targetImg.rows << ", col-" << targetImg.cols << endl;
-        cout << "keypoints_2: " << keypoints_2.size() << endl;
-        cout << "----------------------------------------------------------------------------------------------------------" << endl;
-    }
+//    if (rPartIndex < 3)
+//    {
+//        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+//        cout << "rPartIndex: " << sourceImagePart.getRowPartIndex() << ", cPartIndex: " << sourceImagePart.getColumnPartIndex() << endl;
+//        cout << "sourceImg: " << "row-" << sourceImg.rows << ", col-" << sourceImg.cols << endl;
+//        cout << "keypoints_1: " << keypoints_1.size() << endl;
+//        cout << "targetImg: " << "row-" << targetImg.rows << ", col-" << targetImg.cols << endl;
+//        cout << "keypoints_2: " << keypoints_2.size() << endl;
+//        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+//    }
 
 
     // SurfDescriptorExtractor extractor;
@@ -267,11 +267,10 @@ Mat StarImageRegistBuilder::getImgTransform(StarImagePart sourceImagePart, StarI
     if (rPartIndex < 3)
     {
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
-        cout << "rPartIndex: " << sourceImagePart.getRowPartIndex() << ", cPartIndex: " << sourceImagePart.getColumnPartIndex() << endl;
-        cout << "sourceImg: " << "row-" << sourceImg.rows << ", col-" << sourceImg.cols << endl;
-        cout << "imagePoints1: " << imagePoints1.size() << endl;
-        cout << "targetImg: " << "row-" << targetImg.rows << ", col-" << targetImg.cols << endl;
-        cout << "imagePoints2: " << imagePoints2.size() << endl;
+        cout << "rPartIndex\t" << sourceImagePart.getRowPartIndex() << "\tcPartIndex\t" << sourceImagePart.getColumnPartIndex() << endl;
+        cout << "sourceImg\t" << sourceImg.rows << "\t" << sourceImg.cols << "\t" << "imagePoints1\t" << imagePoints1.size() << endl;
+
+        cout << "targetImg\t" << targetImg.rows << "\t" << targetImg.cols << "\t" << "imagePoints2\t" << imagePoints2.size() << endl;
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
     }
 

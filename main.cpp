@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 
 
     vector<string> files;
-    string folder = "/Users/xujian/Downloads/12";
+    string folder = "/Users/xujian/Downloads/13";
     getFiles(folder, files);
 
     if (files.size() <= 0) {
