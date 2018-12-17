@@ -254,3 +254,134 @@ float subtractionImage(Mat_<Vec3b>& img1, Mat_<Vec3b>& img2) {
 
     return result / (img1.rows * img1.cols);
 }
+
+
+/**
+ * 计算三点所形成夹角的角度信息
+ * @param basePtVec
+ * @param lightestPtVec
+ * @param destPtVec
+ * @return
+ */
+float generateAngleOnThreePoints(vector<float>& basePtVec, vector<float>& lightestPtVec, vector<float>& destPtVec) {
+    // cb 代表原点跟最亮星点的连线向量，向量指向b；ca代表原点跟目标星点的连线，向量指向a
+    vector<float> cb;
+    vector<float> ca;
+
+    float cbMod = 0, caMod = 0, dotMulValue = 0;
+
+    // 获得cb ca的具体表现形式
+    for (int index = 0; index < basePtVec.size(); index ++) {
+        cbMod += pow(lightestPtVec[index] - basePtVec[index], 2);
+        cb.push_back(lightestPtVec[index] - basePtVec[index]);
+
+        caMod += pow(destPtVec[index] - basePtVec[index], 2);
+        ca.push_back(destPtVec[index] - basePtVec[index]);
+
+        dotMulValue += ( (lightestPtVec[index] - basePtVec[index]) * (destPtVec[index] - basePtVec[index]) );
+    }
+    caMod = sqrt(caMod);
+    cbMod = sqrt(cbMod);
+
+    // 返回弧度信息
+    float angle;  // 用弧度表示具体的角度信息，范围为[0, 2 * pi]
+    float nyPi = (float)acos(-1.0);  // 角度为pi时候，对应的弧度
+
+    // 判断夹角的正负信息（二维的情况下可以用叉积判断，但是这里也仅仅是涉及二维）
+    // 二维的情况下通过行列式来判断旋转的方向，高维叉积的计算如：https://spaces.ac.cn/archives/2219 所示
+    float x1 = cb[0], y1 = cb[1];
+    float x2 = ca[0], y2 = ca[1];
+    float crossMulValue = x1 * y2 - x2 * y1;
+
+    //  crossMulValue 为正，逆时针；为负，顺时针；0的话向量共线，可能夹角是0度，也可能是180度
+    if (crossMulValue == 0) {
+        // 两向量共线
+        if (dotMulValue > 0) {
+            angle = 0.0;
+        } else {
+            angle = nyPi;
+        }
+    } else {
+        // 当 dotMulValue / (caMod * cbMod) 的值接近于 正负1.0的时候，acos计算比较危险，容易出现越界
+        float cosValue = dotMulValue / (caMod * cbMod);
+        if (cosValue < -1.0) {
+            cosValue = -1.0f;
+        } else if (cosValue > 1.0) {
+            cosValue = 1.0;
+        }
+
+        angle = acos(cosValue);
+
+        if (crossMulValue < 0) {
+            // 说明 ca 相对于 cb 发生了顺时针旋转，角度为负
+            angle = 2 * nyPi - angle;
+        }
+    }
+
+    return angle;
+}
+
+
+/**
+ * 进行数据标准化
+ * @param array
+ */
+void normalizationVector(vector<float>& array) {
+
+    if (array.size() <= 0) {
+        return;
+    }
+
+//    // 1. 寻找数组的最大最小值
+//    float minValue = numeric_limits<float>::max();
+//    float maxValue = numeric_limits<float>::min();
+//
+//    for (int index = 0; index < array.size(); index ++) {
+//        if (array[index] < minValue) {
+//            minValue = array[index];
+//        }
+//
+//        if (array[index] > maxValue) {
+//            maxValue = array[index];
+//        }
+//    }
+//    float maxMinRange = maxValue - minValue;
+
+//    // 数据标准化 采用 min max标准化：https://blog.csdn.net/pipisorry/article/details/52247379
+//    for (int index = 0; index < array.size(); index ++) {
+//        array[index] = (array[index] - minValue) / maxMinRange;
+//    }
+
+//    // 2. z-score 标准化
+//    float mean = 0;
+//    float standardDeviation = 0;
+//
+//    for (int index = 0; index < array.size(); index ++) {
+//        mean += array[index];
+//    }
+//    mean /= array.size();
+//
+//    for (int index = 0; index < array.size(); index ++) {
+//        standardDeviation += pow(array[index] - mean, 2);
+//    }
+//    standardDeviation = sqrt(standardDeviation / (array.size() - 1));
+//
+//    for (int index = 0; index < array.size(); index ++) {
+//        array[index] = (array[index] - mean) / standardDeviation;
+//    }
+
+
+    // 1. 寻找数组的最大最小值
+    float sqrtNum = 0;
+    for (int index = 0; index < array.size(); index ++) {
+        sqrtNum += array[index];
+    }
+    sqrtNum = sqrt(sqrtNum);
+
+    vector<float> tmpArray = array;
+    // 标准化信息
+    for (int index = 0; index < array.size(); index ++) {
+        array[index] /= sqrtNum;
+    }
+
+}

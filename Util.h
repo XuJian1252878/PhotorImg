@@ -14,6 +14,8 @@
 #include <errno.h>
 #include <opencv/cv.hpp>
 #include <time.h>
+#include <math.h>
+#include <limits.h>
 
 #include "opencv2/xfeatures2d.hpp"
 
@@ -40,3 +42,14 @@ Mat_<Vec3b> getTransformImgByHomo(Mat_<Vec3b>& queryImg, Mat homo);
 bool adjustMaskPixel(Mat& mask);
 
 float subtractionImage(Mat_<Vec3b>& img1, Mat_<Vec3b>& img2);
+
+/**
+ * 根据三点确定角度信息
+ * @param basePtVec
+ * @param lightestPtVec
+ * @param destPtVec
+ * @return
+ */
+float generateAngleOnThreePoints(vector<float>& basePtVec, vector<float>& lightestPtVec, vector<float>& destPtVec);
+
+void normalizationVector(vector<float>& array);

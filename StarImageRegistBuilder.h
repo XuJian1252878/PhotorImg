@@ -5,11 +5,9 @@
 #ifndef IMAGEREGISTRATION_STARIMAGEREGISTBUILDER_H
 #define IMAGEREGISTRATION_STARIMAGEREGISTBUILDER_H
 
-#endif //IMAGEREGISTRATION_STARIMAGEREGISTBUILDER_H
-
 #include <iostream>
 #include <opencv/cv.hpp>
-
+#include <stdio.h>
 
 #include "StarImage.h"
 #include "opencv2/xfeatures2d.hpp"
@@ -19,6 +17,10 @@
 using namespace cv;
 using namespace std;
 using namespace cv::xfeatures2d;
+
+#endif //IMAGEREGISTRATION_STARIMAGEREGISTBUILDER_H
+
+struct NearPoint;
 
 class StarImageRegistBuilder
 {
@@ -35,6 +37,7 @@ private:
 
     Mat skyMaskMat; // 天空部分的模板
     int skyBoundaryRange;  // 用于去除边界部分的特征点，设置为整幅图像的5%。靠近边缘5%的天空特征点忽略不计。
+    int kNeighbor;  // 选取最近的k个邻居作为 特征点的描述符
 
     int rowParts;
     int columnParts;  // 期望图像将被划分为 rowParts * columnParts 部分
@@ -53,4 +56,10 @@ public:
 private:
 
     Mat getImgTransform(StarImagePart sourceImagePart, StarImagePart targetImagePart, Mat& OriImgHomo, bool& existHomo);
+    Mat getImgTransformNew(StarImagePart sourceImagePart, StarImagePart targetImagePart, Mat& oriImgHomo, bool& existHomo);
+
+    vector<vector<NearPoint>> getNearestNPoints(vector<vector<float>>& targetPoints, vector<vector<float>>& pointArray, int knnNum);
+
+    // 获得当前特征点的描述符
+    vector<vector<float>> getPointDesc(vector<vector<NearPoint>>& NN, vector<vector<float>>& pts, Mat& imgMat);
 };

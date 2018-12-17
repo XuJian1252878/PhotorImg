@@ -18,7 +18,8 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 //    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
 //    Mat groundMaskImgMat_ = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
 
-    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
+//    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180314_125510_C++.jpg", IMREAD_UNCHANGED);
+    Mat groundMaskImgMat = imread("/Users/xujian/Desktop/JPEG_20180618_074240_C++.jpg", IMREAD_UNCHANGED);
 
 //    Mat groundMaskImgMat;
 //    resize(groundMaskImgMat_, groundMaskImgMat, Size(groundMaskImgMat_.cols/scale, groundMaskImgMat_.rows/scale), 0, 0, INTER_LINEAR);
@@ -112,7 +113,7 @@ int main(int argc, char** argv)
 
 
     vector<string> files;
-    string folder = "/Users/xujian/Downloads/13";
+    string folder = "/Users/xujian/Downloads/15";
     getFiles(folder, files);
 
     if (files.size() <= 0) {
