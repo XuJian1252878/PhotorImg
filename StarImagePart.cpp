@@ -79,8 +79,8 @@ void StarImagePart::setImage(Mat_<Vec3b> imageMat) {
 void StarImagePart::addImagePixelValue(Mat& resultImg,
                                        Mat& queryImgTransform, Mat& skyMaskImg, int imageCount) {
 
-
-    this->imagePart += (resultImg / imageCount * 1.0);
+    int boundaryGap = 100;
+    int imgAreaGap = 100;
 
     // 取出当前mask起始点的位置
     int rMaskIndex = this->getAlignStartRowIndex();
@@ -93,24 +93,68 @@ void StarImagePart::addImagePixelValue(Mat& resultImg,
                 continue; ////
             }
 
+            // 检查skymask的边界两点，确定填充方式
             int skyMaskPixel = skyMaskImg.at<uchar>(rMaskIndex + rIndex, cMaskIndex + cIndex);
-            if (skyMaskPixel == 0) {
+            if (skyMaskPixel < 127) {
                 continue;
             }
 
+            int skyMaskPixelAhead = -1;
+            bool isTransition = false;
+            if (rMaskIndex + rIndex + boundaryGap >= skyMaskImg.rows) {
+                skyMaskPixelAhead = skyMaskImg.at<uchar>(skyMaskImg.rows - 1, cMaskIndex + cIndex);
+            } else if (cMaskIndex + cIndex + boundaryGap >= skyMaskImg.cols) {
+                skyMaskPixelAhead = skyMaskImg.at<uchar>(rMaskIndex + rIndex, skyMaskImg.cols - 1);
+            } else {
+                skyMaskPixelAhead = skyMaskImg.at<uchar>(rMaskIndex + rIndex + boundaryGap, cMaskIndex + cIndex + boundaryGap);
+            }
+
+            if (skyMaskPixelAhead < 127) {
+                isTransition = true;
+            }
+
             bool isBlackPixel = true;
-            Vec3b resultImgItem = resultImg.at<Vec3b>(rIndex, cIndex);
+            Vec3b resultImgItem;
+
+            if (rIndex + imgAreaGap >= resultImg.rows) {
+                // 初始下边界
+                resultImgItem = resultImg.at<Vec3b>(resultImg.rows - 1, cIndex);
+            } else if (cIndex + imgAreaGap >= resultImg.cols) {
+                // 初始右边界
+                resultImgItem = resultImg.at<Vec3b>(rIndex, resultImg.cols - 1);
+            } else if (rIndex <= imgAreaGap) {
+                // 初始上边界
+                resultImgItem = resultImg.at<Vec3b>(0, cIndex);
+            } else if (cIndex <= imgAreaGap) {
+                // 初始左边界
+                resultImgItem = resultImg.at<Vec3b>(rIndex, 0);
+            } else {
+                // 初始星空、地景边界
+                resultImgItem = resultImg.at<Vec3b>(rIndex + imgAreaGap, cIndex + imgAreaGap);
+            }
+
             for (int i = 0; i < 3; i ++) {
                 if (resultImgItem[i] > 0) {
                     isBlackPixel = false;
                 }
             }
 
-            if (isBlackPixel) {
-                int new_x = cIndex;
-                int new_y = rIndex;
+            int new_x = cIndex;
+            int new_y = rIndex;
+            if (isTransition) {
+                // 在过渡带中，直接使用target的像素
                 if (new_x >= 0 && new_x < resultImg.cols && new_y >= 0 && new_y < resultImg.rows) {
                     this->imagePart.at<Vec3b>(new_y, new_x) += (queryImgTransform.at<Vec3b>(rMaskIndex + new_y, cMaskIndex + new_x) * 1.0   / imageCount);
+                }
+            } else {
+                if (isBlackPixel) {
+                    // 不在过渡带，但是是黑像素，则使用target的像素
+                    if (new_x >= 0 && new_x < resultImg.cols && new_y >= 0 && new_y < resultImg.rows) {
+                        this->imagePart.at<Vec3b>(new_y, new_x) += (queryImgTransform.at<Vec3b>(rMaskIndex + new_y, cMaskIndex + new_x) * 1.0   / imageCount);
+                    }
+                } else {
+                    // 不在过渡带，无黑像素，使用已经配准之后的图像
+                    this->imagePart.at<Vec3b>(rIndex, cIndex) += (resultImg.at<Vec3b>(rIndex, cIndex) * 1.0 / imageCount);
                 }
             }
         }

@@ -53,3 +53,5 @@ float subtractionImage(Mat_<Vec3b>& img1, Mat_<Vec3b>& img2);
 float generateAngleOnThreePoints(vector<float>& basePtVec, vector<float>& lightestPtVec, vector<float>& destPtVec);
 
 void normalizationVector(vector<float>& array);
+
+void generateSkySeparatorMaskImgMat(Mat &skySeparatorMaskImg, Mat& realSkyMaskImg, Mat &skyMaskMat, int separatorRange);

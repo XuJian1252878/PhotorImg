@@ -385,3 +385,37 @@ void normalizationVector(vector<float>& array) {
     }
 
 }
+
+
+void generateSkySeparatorMaskImgMat(Mat &skySeparatorMaskImg, Mat& realSkyMaskImg, Mat &skyMaskMat, int separatorRange) {
+
+    if (skyMaskMat.rows <= 0 || skyMaskMat.cols <= 0) {
+        return;
+    }
+
+    for (int rIndex = 1; rIndex < skyMaskMat.rows; rIndex ++) {
+
+        for (int cIndex = 0; cIndex < skyMaskMat.cols; cIndex ++) {
+
+            if (rIndex - separatorRange > 0) {
+                // 构建星空分隔带mask
+                skySeparatorMaskImg.at<uchar>(rIndex - separatorRange - 1, cIndex) = 0;
+            }
+
+            int before = skyMaskMat.at<uchar>(rIndex - 1, cIndex);
+            int after = skyMaskMat.at<uchar>(rIndex, cIndex);
+
+            if (before > MASK_PIXEL_THRESHOLD && after < MASK_PIXEL_THRESHOLD) {
+                // 寻找到分界线之后
+                // 1. 最终sky mask的操作
+                for (int j = 0; j < separatorRange; j ++) {
+                    realSkyMaskImg.at<uchar>(rIndex - j - 1, cIndex) = 0;
+                }
+            }
+            break;
+
+        }
+
+    }
+
+}

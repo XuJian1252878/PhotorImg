@@ -23,11 +23,10 @@ Mat process(std::vector<Mat_<Vec3b>> sourceImages, Mat_<Vec3b> targetImage) {
 
 //    Mat groundMaskImgMat;
 //    resize(groundMaskImgMat_, groundMaskImgMat, Size(groundMaskImgMat_.cols/scale, groundMaskImgMat_.rows/scale), 0, 0, INTER_LINEAR);
+    adjustMaskPixel(groundMaskImgMat);
 
     Mat skyMaskMat = ~groundMaskImgMat;
-
     adjustMaskPixel(skyMaskMat);
-    adjustMaskPixel(groundMaskImgMat);
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0101.jpg", skyMaskMat);
     imwrite("/Users/xujian/Workspace/AndroidStudy/CPlusPlus/ImageRegistration/img/0102.jpg", groundMaskImgMat);
 

@@ -95,12 +95,13 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 //                Mat tmpRegistMat = this->getImgTransformNew(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
 //                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
 
-                Mat_<Vec3b>& queryImgTransform = this->sourceImages[index];
-                if (existHomo) {
-                    queryImgTransform = getTransformImgByHomo(queryImgTransform, homo);
-                } else {
-                    queryImgTransform = this->targetImage;
-                }
+//                Mat_<Vec3b>& queryImgTransform = this->sourceImages[index];
+//                if (existHomo) {
+//                    queryImgTransform = getTransformImgByHomo(queryImgTransform, homo);
+//                } else {
+//                    queryImgTransform = this->targetImage;
+//                }
+                Mat_<Vec3b>& queryImgTransform = this->targetImage;
                 resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
 
                 tmpStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage().release();
