@@ -69,6 +69,9 @@ void StarImagePart::setImage(Mat_<Vec3b> imageMat) {
     this->imagePart = imageMat;
 }
 
+void StarImagePart::addImagePixelValue(Mat& resultImg, int imageCount) {
+    this->imagePart += (resultImg / imageCount * 1.0);
+}
 
 /**
  * 前提 this->imagePart 初始为0矩阵

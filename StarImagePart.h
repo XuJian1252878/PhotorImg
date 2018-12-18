@@ -72,4 +72,6 @@ public:
     int getAlignStartColumnIndex() const;
 
     int getAlignEndColumnIndex() const;
+
+    void addImagePixelValue(Mat& resultImg, int imageCount);
 };

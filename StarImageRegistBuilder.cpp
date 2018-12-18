@@ -89,8 +89,26 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
                 Mat homo;
                 bool existHomo = false;
 
-                Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
+                // -------
+                int rMaskIndexStart = this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getAlignStartRowIndex();
+                int rMaskIndexEnd = this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getAlignEndRowIndex() - 1;
+                int cMaskIndexMiddle = (this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getAlignStartColumnIndex()
+                                        + this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getAlignEndColumnIndex()) / 2;
+                int maskStartPixelValue = this->skyMaskMat.at<uchar>(rMaskIndexStart, cMaskIndexMiddle);
+                int maskEndPixelValue = this->skyMaskMat.at<uchar>(rMaskIndexEnd - ((rMaskIndexEnd - rMaskIndexStart) >> 2), cMaskIndexMiddle);
+
+                if (maskStartPixelValue > 127 && maskEndPixelValue > 127) {
+                    Mat tmpRegistMat = this->getImgTransform(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
                                                          this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
+
+                    Mat_<Vec3b>& queryImgTransform = this->targetImage;
+                    resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
+                } else {
+                    resultStarImage.getStarImagePart(rPartIndex, cPartIndex)
+                            .addImagePixelValue(
+                                    this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage(),
+                                    this->imageCount);
+                }
 
 //                Mat tmpRegistMat = this->getImgTransformNew(tmpStarImage.getStarImagePart(rPartIndex, cPartIndex),
 //                                                         this->targetStarImage.getStarImagePart(rPartIndex, cPartIndex), homo, existHomo);
@@ -101,8 +119,6 @@ Mat_<Vec3b> StarImageRegistBuilder::registration(int mergeMode) {
 //                } else {
 //                    queryImgTransform = this->targetImage;
 //                }
-                Mat_<Vec3b>& queryImgTransform = this->targetImage;
-                resultStarImage.getStarImagePart(rPartIndex, cPartIndex).addImagePixelValue(tmpRegistMat, queryImgTransform, this->skyMaskMat, this->imageCount);
 
                 tmpStarImage.getStarImagePart(rPartIndex, cPartIndex).getImage().release();
             }
